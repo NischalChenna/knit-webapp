@@ -1,4 +1,5 @@
-import KnitAuth from "https://d1s750jujhrvo3.cloudfront.net/knit-sandbox.js";
+import KnitAuth from "http://d284iem4owwq8w.cloudfront.net/knit-web.js";
+//import KnitAuth from "../assets/knit-web";
 
 import type { EventName } from "@lit-labs/react";
 import * as React from "react";
@@ -13,6 +14,5 @@ const KnitWeb = createComponent({
     onSuccess: "onSuccess" as EventName<CustomEvent>,
   },
 });
-
 
 export { KnitWeb };
