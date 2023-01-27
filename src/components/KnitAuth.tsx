@@ -1,4 +1,4 @@
-import KnitAuth from "http://d284iem4owwq8w.cloudfront.net/knit-web.js";
+import KnitAuth from "https://d284iem4owwq8w.cloudfront.net/knit-web.js";
 //import KnitAuth from "../assets/knit-web";
 
 import type { EventName } from "@lit-labs/react";
