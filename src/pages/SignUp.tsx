@@ -1,24 +1,28 @@
 import { Row, Col } from "antd";
-import { TestimonialCard } from "../components";
+import { useState } from "react";
+import { AdditionalForm, SignUpForm, SignUpHead, TestimonialCard } from "../components";
 
-function SignUp (){
-  
- {console.log("Amlan")}
-    return (
-        <div>
-            <div>
-                <Row>
-                   <Col span={12}>
-                   <TestimonialCard />
-                   </Col>
-                   <Col span={12}>
-                   "Saikia"
-                   </Col>
-                </Row>
-            </div>    
-        </div>
-    )
 
+function SignUp() {
+
+    const [ title, setTitle ] = useState("1. Sign Up")
+
+  return (
+    <div>
+      <div>
+        <Row>
+          <Col span={12}>
+            <TestimonialCard />
+          </Col>
+          <Col span={12}>
+           <SignUpHead />
+           {/* <AdditionalForm /> */}
+           <SignUpForm />
+          </Col>
+        </Row>
+      </div>
+    </div>
+  );
 }
 
 export default SignUp;
