@@ -16,8 +16,8 @@ function SignUp() {
           </Col>
           <Col span={12}>
            <SignUpHead />
-           {/* <AdditionalForm /> */}
-           <SignUpForm />
+           <AdditionalForm />
+           {/* <SignUpForm /> */}
           </Col>
         </Row>
       </div>

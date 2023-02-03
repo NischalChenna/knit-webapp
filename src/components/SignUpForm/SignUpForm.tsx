@@ -18,10 +18,12 @@ function SignUpForm() {
   return (
     <div className="signup-form">
       <div className="signup-btn-box">
-        <Button>Sign up with Google</Button>
-        <Button>Sign up with Microsoft</Button>
+        <Button disabled>Sign up with Google</Button>
+        <Button disabled>Sign up with Microsoft</Button>
       </div>
-      <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+      <div
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      >
         <div style={{ flex: 1, height: "0.2px", backgroundColor: "silver" }} />
         <div>
           <p style={{ width: "30px", textAlign: "center" }}>or</p>
@@ -39,23 +41,20 @@ function SignUpForm() {
             rules={[{ required: true, type: "email" }]}
             label="Work Email"
           >
-            <Input placeholder="input placeholder" />
+            <Input placeholder="Enter work email" />
           </Form.Item>
-          <Form.Item
-            name={["user", "password"]}
-            rules={[{ required: true, type: "string" }]}
-            label="Password"
-          >
-            <Input placeholder="input placeholder" />
-          </Form.Item>
+          <p style={{ marginTop: "12px" }}>
+            You’ll receive a 6 digit OTP on your work email within 60 seconds.
+            Click on Get OTP to receive one.
+          </p>
           <Form.Item>
             <Button
-              style={{ marginTop: "4rem" }}
+              style={{ marginTop: "2.5rem" }}
               type="primary"
               htmlType="submit"
               block
             >
-              Sign Up
+              GET OTP
             </Button>
           </Form.Item>
         </Form>
