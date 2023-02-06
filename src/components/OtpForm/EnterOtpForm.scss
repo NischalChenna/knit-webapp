@@ -1,5 +1,22 @@
 .otp-form {
-  margin-top: 5rem;
+  margin-top: 5.7rem;
   margin-left: 5.9rem;
   margin-right: 11.3rem;
+
+  .input-box {
+    margin: 0px 0.5rem;
+    height: 120%;
+    width: 45% !important;
+    border: 1.5px solid orange;
+    border-radius: 2px;
+     color: black;
+  }
+
+  .otp-text{
+    margin-bottom: 5px;
+  }
+
+  .resend-text{
+    margin-top: 5px;
+  }
 }

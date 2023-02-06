@@ -1,16 +1,28 @@
-import { Form, Input } from "antd";
-import "./../OtpForm/EnterOtpForm.scss"
+import { Button, Form, Input } from "antd";
+import { useState } from "react";
+import OtpInput from "react-otp-input";
+import "./../OtpForm/EnterOtpForm.scss";
+
 function OtpInfoForm() {
   
-  const onFinish = (values: any) => {
-    console.log(values);
-  };
-  const validateMessages = {
+  /**
+   * Otp validation left 
+   */
+  
+    const validateMessages = {
     required: "${label} is required",
-    types: {
-      email: "${label} is not a valid email!",
-    },
   };
+
+  const [otpValue, setOtpValue] = useState<any>("");
+
+  const handleChange = (otp: any) =>{
+     setOtpValue(otp)
+  }
+
+  const onFinish = (values: any) => {
+    const newMap = {...values, user:{ ...values.user, otp: otpValue}}
+    console.log(newMap)  
+};
 
   return (
     <div className="otp-form">
@@ -18,14 +30,43 @@ function OtpInfoForm() {
         layout="vertical"
         onFinish={onFinish}
         validateMessages={validateMessages}
-        disabled={true}
       >
         <Form.Item
           name={["user", "name"]}
-          rules={[{ required: true, type: "email" }]}
+          rules={[{ required: false, type: "email" }]}
           label="Work Email"
         >
-          <Input placeholder="Enter work email" />
+          <Input  disabled={true} placeholder="Enter work email" />
+        </Form.Item>
+        <Form.Item
+          rules={[{ required: true}]}
+          label="Enter OTP"
+        >
+          <OtpInput 
+           numInputs={6}
+           value={otpValue}
+           inputStyle="input-box"
+           onChange={handleChange}
+           hasErrored
+           isInputNum
+           separator={<span></span>}
+           />
+           <p className="otp-text">
+            Didn’t receive the OTP ? 
+           </p>
+           <p className="resend-text">
+           Click on Resend OTP in 1:00
+           </p>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            style={{ marginTop: "3rem" }}
+            type="primary"
+            htmlType="submit"
+            block
+          >
+            Submit OTP
+          </Button>
         </Form.Item>
       </Form>
     </div>
