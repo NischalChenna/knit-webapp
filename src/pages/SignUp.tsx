@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import { useState } from "react";
-import { AdditionalForm, SignUpForm, SignUpHead, TestimonialCard } from "../components";
+import { AdditionalForm, OtpInfoForm, SignUpForm, SignUpHead, TestimonialCard } from "../components";
 
 
 function SignUp() {
@@ -16,9 +16,10 @@ function SignUp() {
           </Col>
           <Col span={12}>
            <SignUpHead />
-           <AdditionalForm />
+           {/* <AdditionalForm /> */}
+            <OtpInfoForm />  
            {/* <SignUpForm /> */}
-          </Col>
+        </Col>
         </Row>
       </div>
     </div>
