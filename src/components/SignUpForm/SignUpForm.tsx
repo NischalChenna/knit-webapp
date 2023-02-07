@@ -1,27 +1,46 @@
 import { Button, Form, Input } from "antd";
+import { useState } from "react";
 import "./../SignUpForm/SignUpForm.scss";
-
-function SignUpForm() {
+import axios from "axios";
+import getAxiosInstance from "../../services/Api";
+type SignUpProps = {
+  updateEmail: Function;
+  nextStep: Function;
+};
+const SignUpForm = (props: SignUpProps): JSX.Element => {
   /*ToDo: Add icons in buttons*/
+  const [form] = Form.useForm();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: any): void => {
+    console.log("on Submnit");
     console.log(values);
+    setLoading(true);
+
+    getAxiosInstance()
+      .post("auth.signIn", {
+        ...values,
+        newUser: true,
+      })
+      .then((res: any) => {
+        if (res.data.success) {
+          props.updateEmail(values.userEmail);
+          props.nextStep();
+          setLoading(false);
+        }
+      });
   };
 
   const validateMessages = {
-    required: "${label} is required",
+    required: "Email is required",
     types: {
-      email: "${label} is not a valid email!",
+      email: "Not a valid email!",
     },
   };
 
   return (
     <div className="signup-form">
-      <div className="signup-btn-box">
-        <Button disabled>Sign up with Google</Button>
-        <Button disabled>Sign up with Microsoft</Button>
-      </div>
-      <div
+      {/* <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <div style={{ flex: 1, height: "0.2px", backgroundColor: "silver" }} />
@@ -29,15 +48,16 @@ function SignUpForm() {
           <p style={{ width: "30px", textAlign: "center" }}>or</p>
         </div>
         <div style={{ flex: 1, height: "0.2px", backgroundColor: "silver" }} />
-      </div>
+      </div> */}
       <div className="form">
         <Form
           layout="vertical"
           onFinish={onFinish}
+          form={form}
           validateMessages={validateMessages}
         >
           <Form.Item
-            name={["user", "name"]}
+            name={"userEmail"}
             rules={[{ required: true, type: "email" }]}
             label="Work Email"
           >
@@ -47,15 +67,23 @@ function SignUpForm() {
             You’ll receive a 6 digit OTP on your work email within 60 seconds.
             Click on Get OTP to receive one.
           </p>
-          <Form.Item>
-            <Button
-              style={{ marginTop: "2.5rem" }}
-              type="primary"
-              htmlType="submit"
-              block
-            >
-              GET OTP
-            </Button>
+          <Form.Item shouldUpdate className="submit">
+            {() => (
+              <Button
+                style={{ marginTop: "2.5rem" }}
+                type="primary"
+                htmlType="submit"
+                loading={isLoading}
+                block
+                disabled={
+                  !form.isFieldsTouched() ||
+                  form.getFieldsError().filter(({ errors }) => errors.length)
+                    .length > 0
+                }
+              >
+                {isLoading ? null : "GET OTP"}
+              </Button>
+            )}
           </Form.Item>
         </Form>
       </div>
@@ -70,6 +98,6 @@ function SignUpForm() {
       </div>
     </div>
   );
-}
+};
 
 export default SignUpForm;
