@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { useState } from "react";
-import OtpInput from "react-otp-input";
+import OtpInput from "react18-input-otp";
 import "./../OtpForm/EnterOtpForm.scss";
 
 interface optFormProps {
