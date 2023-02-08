@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 
 const prodApi: AxiosInstance = axios.create({
-  baseURL: `https://4ffa-2409-40f0-4e-1aa9-9445-d29a-9de7-609f.in.ngrok.io/`,
+  baseURL: `https://ccf8-2409-40f0-4e-1aa9-9445-d29a-9de7-609f.in.ngrok.io/`,
   headers: {
     "ngrok-skip-browser-warning": "true",
     Accept: "application/json",

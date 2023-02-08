@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Spin } from "antd";
+import { Spin, ConfigProvider } from "antd";
 const Authorize = React.lazy(() => import("./pages/Authorize"));
 const Home = React.lazy(() => import("./pages/Home"));
 const AdminAuth = React.lazy(() => import("./pages/AdminAuth"));
@@ -12,7 +12,13 @@ const DashboardLayout = React.lazy(
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {
   return (
-    <div className="">
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#FF6C37",
+        },
+      }}
+    >
       <React.Suspense
         fallback={
           <div
@@ -33,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Navigate to="/signup" replace />} />
             <Route path="/404" element={<Page404 />} />
             <Route path="/oauth/authorize" element={<Authorize />} />
             <Route path="/admin/authorize" element={<AdminAuth />} />
@@ -41,7 +48,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </React.Suspense>
-    </div>
+    </ConfigProvider>
   );
 }
 

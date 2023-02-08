@@ -20,19 +20,20 @@
     //  font-family: Lato;
   }
 
-  .status-shape-container{
+  .status-shape-container {
     display: flex;
     justify-content: space-around;
     margin-top: 12px;
   }
-  .status-shape{
-    min-width: 45%;;
+
+  .status-shape {
+    min-width: 45%;
     max-width: 231px;
     height: 8px;
-    background-color: aqua;
+    background-color: $--k-branding;
     margin-right: 8px;
     border-radius: 2px;
-  
+
   }
 
 }

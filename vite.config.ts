@@ -1,18 +1,54 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import reactRefresh from "@vitejs/plugin-react-refresh";
+import path from "path";
+import vitePluginImp from "vite-plugin-imp";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    watch: {
-      usePolling: true,
+  plugins: [
+    reactRefresh(),
+    //   vitePluginImp({
+    //     libList: [
+    //       {
+    //         libName: 'antd',
+    //         style: (name) => {
+    //           return `antd/lib/${name}/style/index.less`;
+    //         },
+    //       },
+    //     ],
+    //   }),
+  ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/styles/_colors.scss";
+        `,
+      },
     },
-    host: true, // needed for the Docker Container port mapping to work
-    strictPort: true,
-    port: 5174, // you can replace this port with any port
   },
-  define: {
-    'process.env': {}
-  }
-})
+  // css: {
+  //   preprocessorOptions: {
+  //     less: {
+  //       javascriptEnabled: true,
+  //       modifyVars: {
+  //         ...{
+  //           'primary-color': '#1DA57A',
+  //           'link-color': '#1DA57A',
+  //           'border-radius-base': '2px',
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
+  resolve: {
+    alias: [
+      {
+        find: /^~/,
+        replacement: path.resolve(__dirname, "src"),
+      },
+    ],
+  },
+  optimizeDeps: {
+    include: ["@ant-design/icons"],
+  },
+});
