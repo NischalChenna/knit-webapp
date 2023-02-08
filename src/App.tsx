@@ -15,7 +15,20 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#FF6C37",
+          colorPrimary: "#ff6c37",
+          colorSuccess: "#059e05",
+          colorPrimaryBg: "rgba(255, 213, 164, 0.15)",
+          colorSuccessBg: "rgba(203, 222, 200, 0.3)",
+          colorError: "#ff0000",
+          colorErrorBg: "rgba(255, 234, 230, 0.4)",
+          colorInfo: "#486aff",
+          colorTextBase: "#202020",
+          colorBgBase: "#ffffff",
+          colorText: "rgba(32, 32, 32,1)",
+          colorTextSecondary: "rgba(32, 32, 32, 0.7)",
+          colorTextTertiary: "rgba(32, 32, 32, 0.5)",
+          colorBorder: "#d9d9d9",
+          colorBgContainer: "#FCFDFF",
         },
       }}
     >

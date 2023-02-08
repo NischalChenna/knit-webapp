@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import path from "path";
-import vitePluginImp from "vite-plugin-imp";
 
 export default defineConfig({
   plugins: [
@@ -47,8 +46,5 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src"),
       },
     ],
-  },
-  optimizeDeps: {
-    include: ["@ant-design/icons"],
-  },
+  }
 });
