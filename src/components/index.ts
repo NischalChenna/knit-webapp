@@ -4,5 +4,15 @@ import SignUpForm from "./signin/SignUpForm";
 import AdditionalForm from "./signin/AdditionalForm";
 import OtpInfoForm from "./signin/OtpForm";
 import SignUpFooter from "./signin/SignUpFooter";
-
-export { TestimonialCard, SignUpHead, SignUpForm, AdditionalForm, OtpInfoForm , SignUpFooter};
+import Countdown from "./Countdown";
+import SelectableTags from "./SelectableTags";
+export {
+  TestimonialCard,
+  SignUpHead,
+  SignUpForm,
+  AdditionalForm,
+  OtpInfoForm,
+  SignUpFooter,
+  Countdown,
+  SelectableTags,
+};
