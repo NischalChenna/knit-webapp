@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Space } from "antd";
 import { Routes, Route, Navigate } from "react-router-dom";
+import GettingStarted from "../../pages/GettingStarted";
 const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
@@ -42,6 +43,7 @@ const DashboardLayout: React.FC = () => (
         <Route path="/logs" element={<div>Logs</div>} />
         <Route path="/issues" element={<div>Issues</div>} />
         <Route path="/accounts" element={<div>Accounts</div>} />
+        <Route path="/gettingStarted" element={<GettingStarted/>} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </Layout>

@@ -1,5 +1,5 @@
 import { HalfDoughnutChart, SplineAreaChart } from "../components";
-import SignUp from "./SignUp";
+// import SignUp from "./SignUp";
 
 function Home() {
   const seriesValues: number[] = [100, 55, 41, 17, 19, 23, 45];
@@ -33,10 +33,10 @@ function Home() {
     <div>
       <h1>Home</h1>
       <div style={{ width: "45%", height: "20%" }}>
-        <SplineAreaChart seriesValues={seriesdata} categoriesValues={categories} />
+        {/* <SplineAreaChart seriesValues={seriesdata} categoriesValues={categories} /> */}
       </div>
 
-      {/* <HalfDoughnutChart series={seriesValues} label={labelValues} legend={legendData}  /> */}
+      <HalfDoughnutChart series={seriesValues} label={labelValues} legend={legendData}  />
     </div>
   );
 }

@@ -1,11 +1,13 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message, notification } from "antd";
 import { useState } from "react";
 import "./../SignUpForm/SignUpForm.scss";
 import axios from "axios";
-import getAxiosInstance from "../../services/Api";
+import getAxiosInstance from "../../../services/Api";
 type SignUpProps = {
   updateEmail: Function;
   nextStep: Function;
+  userEmail: string | null;
+  newUser: Boolean;
 };
 const SignUpForm = (props: SignUpProps): JSX.Element => {
   /*ToDo: Add icons in buttons*/
@@ -20,14 +22,24 @@ const SignUpForm = (props: SignUpProps): JSX.Element => {
     getAxiosInstance()
       .post("auth.signIn", {
         ...values,
-        newUser: true,
+        newUser: props.newUser,
       })
       .then((res: any) => {
         if (res.data.success) {
           props.updateEmail(values.userEmail);
           props.nextStep();
-          setLoading(false);
         }
+      })
+      .catch((err) => {
+        notification.error({
+          placement: "bottomRight",
+          message:
+            err?.response?.data?.error?.msg ||
+            " Something went wrong, please try again",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -54,6 +66,7 @@ const SignUpForm = (props: SignUpProps): JSX.Element => {
           layout="vertical"
           onFinish={onFinish}
           form={form}
+          initialValues={{ userEmail: props.userEmail }}
           validateMessages={validateMessages}
         >
           <Form.Item
@@ -63,38 +76,25 @@ const SignUpForm = (props: SignUpProps): JSX.Element => {
           >
             <Input placeholder="Enter work email" />
           </Form.Item>
-          <p style={{ marginTop: "12px" }}>
+          <p className="mt-2 mb-0">
             You’ll receive a 6 digit OTP on your work email within 60 seconds.
             Click on Get OTP to receive one.
           </p>
           <Form.Item shouldUpdate className="submit">
             {() => (
               <Button
-                style={{ marginTop: "2.5rem" }}
+                className="mt-5"
                 type="primary"
                 htmlType="submit"
                 loading={isLoading}
                 block
-                disabled={
-                  !form.isFieldsTouched() ||
-                  form.getFieldsError().filter(({ errors }) => errors.length)
-                    .length > 0
-                }
+                disabled={!form.getFieldValue("userEmail")?.length}
               >
                 {isLoading ? null : "GET OTP"}
               </Button>
             )}
           </Form.Item>
         </Form>
-      </div>
-      <div className="information-container">
-        <p>
-          Already have an account? <span>Log In</span>
-        </p>
-        <p>
-          By creating an account, you’re agreeing to our Terms and Conditions
-          and Privacy Policy
-        </p>
       </div>
     </div>
   );

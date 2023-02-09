@@ -4,8 +4,16 @@ import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import "./../AdditionalForm/SignUpAdditionalForm.scss";
 import { Option } from "antd/es/mentions";
+import getAxiosInstance from "../../../services/Api";
+import { useNavigate } from "react-router-dom";
 
-function AdditionalForm() {
+interface OrgFormProps {
+  userEmail: string | null;
+  newUser: Boolean;
+}
+
+function AdditionalForm(props: OrgFormProps) {
+  const navigate = useNavigate();
   const categories: string[] = [
     "HRMS",
     "Communication",
@@ -37,9 +45,17 @@ function AdditionalForm() {
   const onFinish = (values: any) => {
     const newMap = {
       ...values,
-      user: { ...values.user, categories: selectedCategories },
+      userEmail: props.userEmail,
+      newUser: props.newUser,
+      categories: selectedCategories,
     };
-    console.log(newMap);
+    getAxiosInstance()
+      .post("auth.sendOrgDetails", newMap)
+      .then((res: any) => {
+        if (res.data.success) {
+          navigate("dashboard/home");
+        }
+      });
   };
 
   return (
@@ -49,23 +65,35 @@ function AdditionalForm() {
         onFinish={onFinish}
         validateMessages={validateMessages}
       >
-        <Form.Item name={["user", "username"]} label="What should we call you?">
+        <Form.Item name={["username"]} label="What should we call you?">
           <Input placeholder="Enter username" />
         </Form.Item>
 
-        <Form.Item name={["user", "org-name"]} label="Organisation Name">
+        <Form.Item name={["orgName"]} label="Organisation Name">
           <Input placeholder="Enter your organisation name" />
         </Form.Item>
-        <Form.Item name={["user", "designation"]} label="Designation Name">
+        <Form.Item name={["designation"]} label="Designation Name">
           <Input placeholder="What is your designation ?" />
         </Form.Item>
-        <Form.Item name={["user", "org-size"]} label="Organisation Size">
-          <Select placeholder="Select your organisation size" allowClear>
-            {orgSize &&
-              orgSize.map((size) => <Option value={size}>{size}</Option>)}
-          </Select>
+        <Form.Item name={["orgSize"]} label="Organisation Size">
+          <Select
+            placeholder="Select your organisation size"
+            allowClear
+            options={orgSize.map((val) => ({ label: val, value: val }))}
+            defaultValue={orgSize[0]}
+          ></Select>
         </Form.Item>
-        <Form.Item name={["user", "categories"]} label="API Category">
+        <Form.Item
+          name={["categories"]}
+          label="API Category"
+          // rules={[
+          //   {
+          //     type: "array",
+          //     required: true,
+          //     message: "Please select categories",
+          //   },
+          // ]}
+        >
           <Space size={[0, 8]} wrap>
             {categories.map((tag) => (
               <CheckableTag
