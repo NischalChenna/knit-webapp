@@ -1,9 +1,12 @@
 import { Button, notification } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OtpInput from "react18-input-otp";
 import getAxiosInstance from "../../../services/Api";
+import { OTP_TIMER } from "../../../utils/constants";
 import "./../OtpForm/EnterOtpForm.scss";
-
+import Countdown from "../../Countdown";
+import { subscribe, unsubscribe } from "../../../utils/events";
+import { time } from "console";
 interface optFormProps {
   userEmail: string | null;
   prevStep: Function;
@@ -19,15 +22,26 @@ const OtpInfoForm = (props: optFormProps) => {
   const validateMessages = {
     required: "${label} is required",
   };
-
   const [otpValue, setOtpValue] = useState<any>("");
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [resendDisabled, setResendDisabled] = useState<boolean>(true);
   const handleChange = (otp: any) => {
-    console.log(otp, typeof otp);
     setOtpValue(otp);
   };
 
-  const submitOtp = (e: any) => {
+  useEffect(() => {
+    subscribe("countdownComplete", () => {
+      setResendDisabled(false);
+    });
+    return () => {
+      unsubscribe("countdownComplete", () => {
+        setResendDisabled(true);
+      });
+    };
+  }, []);
+
+
+  const submitOtp = (e: any): void => {
     e?.preventDefault();
     setLoading(true);
     getAxiosInstance()
@@ -54,6 +68,10 @@ const OtpInfoForm = (props: optFormProps) => {
       });
   };
 
+  const onReenter = (e: any): void => {
+    e?.preventDefault();
+    props.prevStep();
+  };
   return (
     <div className="otp-form">
       <p>
@@ -65,10 +83,7 @@ const OtpInfoForm = (props: optFormProps) => {
           type="text"
           className="font-bold"
           style={{ paddingInline: 0 }}
-          onClick={(e: any) => {
-            e?.preventDefault();
-            props.prevStep();
-          }}
+          onClick={onReenter}
         >
           Re-enter{" "}
         </Button>{" "}
@@ -88,10 +103,13 @@ const OtpInfoForm = (props: optFormProps) => {
         Click on{" "}
         <Button
           type="text"
+          disabled={resendDisabled}
           className="font-bold"
           style={{ paddingInline: 0 }}
           onClick={(e: any) => {
             e?.preventDefault();
+            setResendDisabled(true);
+
             getAxiosInstance()
               .post("auth.resendOtp", {
                 userEmail: props.userEmail,
@@ -105,7 +123,7 @@ const OtpInfoForm = (props: optFormProps) => {
         >
           Resend OTP{" "}
         </Button>{" "}
-        in 1:00
+        in <Countdown countMax={OTP_TIMER} timertoggler={resendDisabled} />s
       </p>
       <Button
         style={{ marginTop: "1rem" }}

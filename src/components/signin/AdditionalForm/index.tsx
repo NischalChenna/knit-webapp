@@ -1,11 +1,9 @@
 import { Button, Form, Input, InputNumber, Select, Space } from "antd";
-import CheckableTag from "antd/es/tag/CheckableTag";
-import { CloseOutlined } from "@ant-design/icons";
-import { useState } from "react";
 import "./../AdditionalForm/SignUpAdditionalForm.scss";
-import { Option } from "antd/es/mentions";
 import getAxiosInstance from "../../../services/Api";
 import { useNavigate } from "react-router-dom";
+import SelectableTags from "../../SelectableTags";
+import { TagOption } from "../../../interfaces";
 
 interface OrgFormProps {
   userEmail: string | null;
@@ -14,26 +12,35 @@ interface OrgFormProps {
 
 function AdditionalForm(props: OrgFormProps) {
   const navigate = useNavigate();
-  const categories: string[] = [
-    "HRMS",
-    "Communication",
-    "Accounting",
-    "CRM",
-    "Payroll",
-    "JobBoards",
-    "ERP",
+  // const categories: string[] = [
+  //   "HRMS",
+  //   "Communication",
+  //   "Accounting",
+  //   "CRM",
+  //   "Payroll",
+  //   "JobBoards",
+  //   "ERP",
+  // ];
+  const categories: TagOption[] = [
+    { label: "HRMS" },
+    { label: "Communication" },
+    { label: "Accounting" },
+    { label: "CRM" },
+    { label: "Payroll" },
+    { label: "JobBoards" },
+    { label: "ERP" },
   ];
 
   const orgSize: string[] = ["01-50", "51-100", "101-250", "251-1000", "1000+"];
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  // const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const handleChange = (tag: string, checked: boolean) => {
-    const newSelectedCategories = checked
-      ? [...selectedCategories, tag]
-      : selectedCategories.filter((t) => t !== tag);
-    setSelectedCategories(newSelectedCategories);
-  };
+  // const handleChange = (tag: string, checked: boolean) => {
+  //   const newSelectedCategories = checked
+  //     ? [...selectedCategories, tag]
+  //     : selectedCategories.filter((t) => t !== tag);
+  //   setSelectedCategories(newSelectedCategories);
+  // };
 
   const validateMessages = {
     required: "${label} is required",
@@ -47,7 +54,9 @@ function AdditionalForm(props: OrgFormProps) {
       ...values,
       userEmail: props.userEmail,
       newUser: props.newUser,
-      categories: selectedCategories,
+      categories: values.categories.map((val: TagOption) =>
+        val?.value ? val.value : val.label
+      ),
     };
     getAxiosInstance()
       .post("auth.sendOrgDetails", newMap)
@@ -86,26 +95,15 @@ function AdditionalForm(props: OrgFormProps) {
         <Form.Item
           name={["categories"]}
           label="API Category"
-          // rules={[
-          //   {
-          //     type: "array",
-          //     required: true,
-          //     message: "Please select categories",
-          //   },
-          // ]}
+          rules={[
+            {
+              type: "array",
+              required: true,
+              message: "Please select atleast 1 category",
+            },
+          ]}
         >
-          <Space size={[0, 8]} wrap>
-            {categories.map((tag) => (
-              <CheckableTag
-                key={tag}
-                style={{ height: "2.5rem", padding: "10px 20px" }}
-                checked={selectedCategories.includes(tag)}
-                onChange={(checked) => handleChange(tag, checked)}
-              >
-                {tag} {selectedCategories.includes(tag) && <CloseOutlined />}
-              </CheckableTag>
-            ))}
-          </Space>
+          <SelectableTags options={categories} />
         </Form.Item>
         <Form.Item>
           <Button

@@ -5,12 +5,14 @@ const Authorize = React.lazy(() => import("./pages/Authorize"));
 const Home = React.lazy(() => import("./pages/Home"));
 const AdminAuth = React.lazy(() => import("./pages/AdminAuth"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
+
 const DashboardLayout = React.lazy(
   () => import("./components/DashboardLayout/DashboardLayout")
 );
 
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {
+
   return (
     <ConfigProvider
       theme={{
@@ -51,7 +53,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate to="/signup" replace />} />
             <Route path="/404" element={<Page404 />} />
             <Route path="/oauth/authorize" element={<Authorize />} />
