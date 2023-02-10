@@ -54,7 +54,9 @@ function AdditionalForm(props: OrgFormProps) {
       ...values,
       userEmail: props.userEmail,
       newUser: props.newUser,
-      categories: values.categories.map((val: TagOption) => val.value),
+      categories: values.categories.map((val: TagOption) =>
+        val?.value ? val.value : val.label
+      ),
     };
     getAxiosInstance()
       .post("auth.sendOrgDetails", newMap)

@@ -49,7 +49,7 @@ const SignUp: React.FC = () => {
         <SignUpHead newUser={newUser} step={[0, 1].includes(step) ? 1 : 2} />
         {
           {
-            2: (
+            0: (
               <React.Fragment>
                 <SignUpForm
                   newUser={newUser}
@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
                 />
               </React.Fragment>
             ),
-            0: <AdditionalForm userEmail={userEmail} newUser={newUser} />,
+            2: <AdditionalForm userEmail={userEmail} newUser={newUser} />,
           }[step]
         }
         <SignUpFooter newUser={newUser} toggleNewUser={toggleNewUser} />

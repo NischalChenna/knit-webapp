@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [
-    reactRefresh(),
+    //reactRefresh(),
     //   vitePluginImp({
     //     libList: [
     //       {
