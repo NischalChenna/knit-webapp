@@ -1,12 +1,12 @@
 import Chart from "react-apexcharts";
 
-interface HalfDoughnutChartProps {
+interface HalfDonutChartProps {
   series: number[];
   label: string[];
   legend: { [string: string]: any };
 }
 
-const HalfDoughnutChart = (props: HalfDoughnutChartProps): JSX.Element => {
+const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
   const series: number[] = props.series;
 
   const options = {
@@ -48,4 +48,4 @@ const HalfDoughnutChart = (props: HalfDoughnutChartProps): JSX.Element => {
   return <Chart options={options} series={series} type="donut" width="500" />;
 };
 
-export default HalfDoughnutChart;
+export default HalfDonutChart;

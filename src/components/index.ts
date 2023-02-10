@@ -4,7 +4,10 @@ import SignUpForm from "./signin/SignUpForm";
 import AdditionalForm from "./signin/AdditionalForm";
 import OtpInfoForm from "./signin/OtpForm";
 import SignUpFooter from "./signin/SignUpFooter";
-import HalfDoughnutChart from "./HalfDoughnutChart/HalfDoughnutCharts";
-import SplineAreaChart from "./SplineAreaChart/SplineAreaChart";
+import HalfDonutChart from "./HalfDonutChart";
+import SplineAreaChart from "./SplineAreaChart";
+import DonutChartFilterCard from "./DonutChartFilterCard";
+import SplineChartFilterCard from "./SplineChartFilterCard";
 
-export { TestimonialCard, SignUpHead, SignUpForm, AdditionalForm, OtpInfoForm , SignUpFooter,HalfDoughnutChart,SplineAreaChart};
+
+export { TestimonialCard, SignUpHead, SignUpForm, AdditionalForm, OtpInfoForm , SignUpFooter, HalfDonutChart,SplineAreaChart,DonutChartFilterCard,SplineChartFilterCard};
