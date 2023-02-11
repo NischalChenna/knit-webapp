@@ -14,6 +14,7 @@ function Authorize() {
         oauthCode: codeStr,
         isFinalStep: stateObj.isFinalStep,
         stepId: stateObj.stepId,
+        category:stateObj.category
       },
       {
         headers: {
