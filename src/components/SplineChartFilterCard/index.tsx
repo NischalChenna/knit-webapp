@@ -1,7 +1,7 @@
 import { Layout, Select } from "antd";
 import React, { useState } from "react";
 import HalfDonutChart from "../HalfDonutChart";
-import "../SplineChartFilterCard/SplineChartFilterCard.scss"
+import "../SplineChartFilterCard/SplineChartFilterCard.scss";
 import SplineAreaChart from "../SplineAreaChart";
 
 interface FilterCardProps {
@@ -13,16 +13,6 @@ interface FilterCardProps {
 }
 
 const SplineChartFilterCard = (props: FilterCardProps): JSX.Element => {
-  const ReqFilterArray = props.values.filter(
-    (e) =>
-      e["filterType"] === "status" ||
-      e["filterType"] === "org" ||
-      e["filterType"] === "time" ||
-      e["filterType"] === "integration"
-  );
-
-  console.log(ReqFilterArray);
-
   const seriesdata: number[] = [
     0, 8, 12, 16, 12, 11, 10, 8, 12, 16, 12, 23, 45, 65, 1, 23,
   ];
@@ -59,8 +49,8 @@ const SplineChartFilterCard = (props: FilterCardProps): JSX.Element => {
         </div>
         <div className="dropdown-box">
           <React.Fragment>
-            {ReqFilterArray.length > 0 &&
-              ReqFilterArray.map(
+            {props.values.length > 0 &&
+              props.values.map(
                 (
                   e: {
                     filterType: string;

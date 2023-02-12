@@ -12,13 +12,6 @@ interface FilterCardProps {
 }
 
 const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
-  const ReqFilterArray = props.values.filter(
-    (e) => e["filterType"] === "status" || e["filterType"] === "org" || e["filterType"] === "time"|| e["filterType"] === "integration"
-
-  );
-
-  console.log(ReqFilterArray);
-
   const seriesValues: number[] = [100, 55, 41, 17, 19, 23, 45];
   const labelValues: string[] = [
     "HRMS",
@@ -48,8 +41,8 @@ const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
         </div>
         <div className="dropdown-box">
           <React.Fragment>
-            {ReqFilterArray.length > 0 &&
-              ReqFilterArray.map(
+            {props.values.length > 0 &&
+              props.values.map(
                 (
                   e: {
                     filterType: string;
