@@ -1,3 +1,5 @@
+import { DotChartOutlined } from "@ant-design/icons";
+import { Skeleton } from "antd";
 import Chart from "react-apexcharts";
 import TableSkeleton from "../TableSkeleton";
 
@@ -51,7 +53,9 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
   return props.dataLoaded ? (
     <Chart options={options} series={series} type="donut" width="500" />
   ) : (
-    <TableSkeleton rows={2} />
+    <Skeleton.Node active={true}>
+      <DotChartOutlined style={{ fontSize: 40, color: "#bfbfbf" }} />
+    </Skeleton.Node>
   );
 };
 

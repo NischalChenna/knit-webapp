@@ -286,7 +286,7 @@ export default function Organizations() {
             <SelectCategory />
           </div>
         </Row>
-        <Row align={"middle"} justify={"center"} className="orgRow">
+        <Row justify={"center"} className="orgRow">
           <HalfDonutChart
             series={seriesValues}
             label={labelValues}
@@ -294,12 +294,14 @@ export default function Organizations() {
             dataLoaded={false}
           />
         </Row>
-        <DataTable
-          columns={tableColumns}
-          data={data}
-          dataLoaded={false}
-          pagination={true}
-        />
+        <Row justify={"center"}>
+          <DataTable
+            columns={tableColumns}
+            data={data}
+            dataLoaded={false}
+            pagination={true}
+          />
+        </Row>
       </div>
     </div>
   );
