@@ -4,6 +4,8 @@ import APIKeys from "../../components/APIKeys";
 import WebhookUrls from "../../components/WebhookUrls";
 import getAxiosInstance from "../../services/Api";
 import "../GettingStarted/GettingStarted.scss";
+import Icon from "@mdi/react";
+import { mdiOpenInNew } from "@mdi/js";
 
 const GettingStarted: React.FC = () => {
   const [prodApiKey, setProdApiKey] = useState<string>("");
@@ -54,7 +56,12 @@ const GettingStarted: React.FC = () => {
             To get started with KNIT, follow the simple steps mentioned in our
             KNIT documentation
           </Row>
-          <Row className="desc">Link to KNIT documentation</Row>
+          <Row className="descLink">
+            <div className="docDesc">Link to KNIT documentation</div>
+            <a href="https://developers.getknit.dev/" target={"_blank"}>
+              <Icon path={mdiOpenInNew} size={"3ex"} className="link"></Icon>
+            </a>
+          </Row>
         </div>
       )}
     </>
