@@ -1,3 +1,4 @@
+@import './styles/all.scss';
 body {
   margin: 0;
   padding: 0;
@@ -16,6 +17,11 @@ body {
   font-weight: 400;
   font-size: 14px;
   text-align: center;
+}
+.ant-table-wrapper .ant-table {
+  border-right: 1px solid $--k-border;
+  border-bottom: 1px solid $--k-border;
+  border-left: 1px solid $--k-border;
 }
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;

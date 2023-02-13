@@ -1,11 +1,35 @@
 .organizations {
-    .filters {
+    .orgHeadRow{
+        border-bottom: 1px solid;
+        border-bottom-color: $--k-border;
         display: flex;
         justify-content: space-between;
-        .timeperiod {
-            margin-right: 2em;
-        }
+        .filters {
+                display: flex;
+                justify-content: space-between;
+        
+                .timeperiod {
+                    margin-right: 2em;
+                }
+            }
     }
+    .orgRow {
+        border-bottom: 1px solid;
+        border-bottom-color: $--k-border;
+    }
+    .orgText{
+        font-weight: 500;
+        color: $--k-secondary;
+    }
+    .numOrg {
+        font-weight: 700;
+        font-size: 20px;
+    }
+    border: 1px solid $--k-border;
+    border-radius: 1ex;
+    padding: 2em;
+    padding-bottom: 1em;
+    background-color: #FCFDFF;
 }
 .deleteColumn{
     display: flex;
@@ -15,4 +39,7 @@
     .deleteIcon {
         margin-right: 1ex;
     }
+}
+.legend {
+    background-color: black;
 }

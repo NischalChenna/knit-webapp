@@ -1,6 +1,4 @@
 .gettingStarted {
-    background-color: #F2F2F2;
-    padding: 3em;
     .desc {
         font-size: 14px;
         color: #202020;
@@ -15,7 +13,7 @@
             margin-right: 1ex;
         }
         .link {
-            color: rgb(255, 108, 55)
+            color: $--k-primary
         }
     }
 }

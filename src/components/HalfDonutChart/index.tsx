@@ -1,9 +1,11 @@
 import Chart from "react-apexcharts";
+import TableSkeleton from "../TableSkeleton";
 
 interface HalfDonutChartProps {
   series: number[];
   label: string[];
   legend: { [string: string]: any };
+  dataLoaded: boolean;
 }
 
 const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
@@ -18,7 +20,7 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
         offsetY: 10,
       },
     },
-    dataLabels:{
+    dataLabels: {
       enabled: false,
     },
     grid: {
@@ -31,6 +33,7 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
       position: props.legend["legendPosition"]
         ? props.legend["legendPosition"]
         : "right",
+      formatter: props.legend["formatLegend"],
     },
 
     responsive: [
@@ -45,7 +48,11 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
     ],
   };
 
-  return <Chart options={options} series={series} type="donut" width="500" />;
+  return props.dataLoaded ? (
+    <Chart options={options} series={series} type="donut" width="500" />
+  ) : (
+    <TableSkeleton rows={2} />
+  );
 };
 
 export default HalfDonutChart;

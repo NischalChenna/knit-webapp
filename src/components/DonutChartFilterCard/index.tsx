@@ -9,12 +9,10 @@ interface FilterCardProps {
     selectedValue: string;
     options: Array<any>;
   }>;
-  filterUpdateFunction: (arg:Record<string, any>) => any
+  filterUpdateFunction: (arg: Record<string, any>) => any;
 }
 
 const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
- 
-
   const [selectedValues, setSelectedValues] = React.useState({});
   const seriesValues: number[] = [100, 55, 41, 17, 19, 23, 45];
   const labelValues: string[] = [
@@ -55,7 +53,9 @@ const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
                     <Select
                       style={{ width: 100, marginRight: "0.3rem" }}
                       key={i}
-                      onChange={(value) => props.filterUpdateFunction({[e.filterType]: value})}
+                      onChange={(value) =>
+                        props.filterUpdateFunction({ [e.filterType]: value })
+                      }
                       defaultValue={
                         e.selectedValue ? e.selectedValue : e.options[0].value
                       }
@@ -72,6 +72,7 @@ const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
           series={seriesValues}
           label={labelValues}
           legend={legendData}
+          dataLoaded={true}
         />
       </div>
     </Layout>

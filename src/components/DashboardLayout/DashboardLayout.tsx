@@ -14,6 +14,7 @@ import dashboardRoutes from "../../routes/dashboard";
 import { DashboardHome } from "../../pages";
 import DashBreadCrumb from "../Breadcrumb";
 import Organizations from "../../pages/Organizations";
+import ScreenTitle from "../ScreenTitle";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -114,19 +115,42 @@ const DashboardLayout: React.FC = () => {
             <p className="avatar-details-description mb-0 lh-1">Admin</p>
           </div>
         </Header>
-        <DashBreadCrumb />
-        <Routes>
-          <Route path="/home" element={<DashboardHome />} />
-          <Route path="/issues" element={<div>Issues</div>} />
-          <Route path="/syncs" element={<div>Syncs</div>} />
-          <Route path="/syncs/:jobId" element={<div>JobId</div>} />
-          <Route path="/syncs/:jobId/:runId" element={<div>RunID</div>} />
-          <Route path="/logs" element={<div>Logs</div>} />
-          <Route path="/accounts" element={<div>Accounts</div>} />
-          <Route path="/getting-started" element={<GettingStarted />} />
-          <Route path="/organizations" element={<Organizations />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Routes>
+        <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
+          <DashBreadCrumb />
+          <Routes>
+            <Route path="/home" element={<DashboardHome />} />
+            <Route path="/issues" element={<div>Issues</div>} />
+            <Route
+              path="/syncs"
+              element={
+                <div>
+                  <ScreenTitle />
+                </div>
+              }
+            />
+            <Route
+              path="/syncs/:jobId"
+              element={
+                <div>
+                  <ScreenTitle />
+                </div>
+              }
+            />
+            <Route
+              path="/syncs/:jobId/:runId"
+              element={
+                <div>
+                  <ScreenTitle />
+                </div>
+              }
+            />
+            <Route path="/logs" element={<div>Logs</div>} />
+            <Route path="/accounts" element={<div>Accounts</div>} />
+            <Route path="/getting-started" element={<GettingStarted />} />
+            <Route path="/organizations" element={<Organizations />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Routes>
+        </div>
       </Layout>
     </Layout>
   );

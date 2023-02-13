@@ -7,6 +7,7 @@ import "../GettingStarted/GettingStarted.scss";
 import Icon from "@mdi/react";
 import { mdiOpenInNew } from "@mdi/js";
 import Loading from "../../components/Loading";
+import ScreenTitle from "../../components/ScreenTitle";
 
 const GettingStarted: React.FC = () => {
   const [prodApiKey, setProdApiKey] = useState<string>("");
@@ -42,7 +43,7 @@ const GettingStarted: React.FC = () => {
         <Loading />
       ) : (
         <div className="gettingStarted">
-          <h4>Getting Started</h4>
+          <ScreenTitle />
           <Row className="apiKeysCon">
             <Col span={20}>
               <APIKeys sandboxApiKey={sandboxApiKey} prodApiKey={prodApiKey} />
