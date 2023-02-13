@@ -12,6 +12,7 @@ import {
 import { useLocation, Link } from "react-router-dom";
 import dashboardRoutes from "../../routes/dashboard";
 import { DashboardHome } from "../../pages";
+import DashBreadCrumb from "../Breadcrumb";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -109,12 +110,16 @@ const DashboardLayout: React.FC = () => {
             <p className="avatar-details-description mb-0 lh-1">Admin</p>
           </div>
         </Header>
+        <DashBreadCrumb />
         <Routes>
           <Route path="/home" element={<DashboardHome />} />
           <Route path="/issues" element={<div>Issues</div>} />
+          <Route path="/syncs" element={<div>Syncs</div>} />
+          <Route path="/syncs/:jobId" element={<div>JobId</div>} />
+          <Route path="/syncs/:jobId/:runId" element={<div>RunID</div>} />
           <Route path="/logs" element={<div>Logs</div>} />
           <Route path="/accounts" element={<div>Accounts</div>} />
-          <Route path="/gettingStarted" element={<GettingStarted />} />
+          <Route path="/getting-started" element={<GettingStarted />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </Layout>
