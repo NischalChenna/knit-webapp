@@ -11,7 +11,6 @@ import {
   SignUpFooter,
 } from "../components";
 
-
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const [userEmail, setEmail] = useState<string | null>(null);
@@ -42,10 +41,7 @@ const SignUp: React.FC = () => {
     if (userEmail) setEmail(null);
   };
   return (
-    <Row>
-      <Col span={12}>
-        <TestimonialCard />
-      </Col>
+    <Row justify={"center"}>
       <Col span={12}>
         <SignUpHead newUser={newUser} step={[0, 1].includes(step) ? 1 : 2} />
         {
@@ -74,7 +70,6 @@ const SignUp: React.FC = () => {
           }[step]
         }
         <SignUpFooter newUser={newUser} toggleNewUser={toggleNewUser} />
-
       </Col>
     </Row>
   );

@@ -8,7 +8,6 @@ const DashBreadCrumb = () => {
   const location = useLocation();
   console.log("locatuionObj", location);
   const pathSnippets = location.pathname.split("/").filter((i) => i);
-
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     if (index > 0) {
       const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
@@ -16,9 +15,8 @@ const DashBreadCrumb = () => {
         return { path: path.path };
       });
       const matchedRoute = matchRoutes(pathObjArray, url);
-      console.log("matchedRouteMatch", matchedRoute);
+
       if (matchedRoute && matchedRoute.length) {
-        console.log("url", url, matchedRoute[0].route.path);
         const crumbRouteObj = dashboardRoutes.find(
           (routeObj) => routeObj.path == matchedRoute[0].route.path
         );

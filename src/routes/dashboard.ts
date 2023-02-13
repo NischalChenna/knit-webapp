@@ -16,24 +16,28 @@ const dashboardRoutes = [
     path: "/dashboard/getting-started",
     label: "Getting Started",
     icon: mdiMapOutline,
+    sidebar: true,
   },
   {
     key: "/dashboard/accounts",
     path: "/dashboard/accounts",
     label: "Integration Acoounts",
     icon: mdiMapOutline,
+    sidebar: true,
   },
   {
     key: "/dashboard/logs",
     path: "/dashboard/logs",
     label: "Logs",
     icon: mdiMapOutline,
+    sidebar: true,
   },
   {
     key: "/dashboard/syncs",
     path: "/dashboard/syncs",
     label: "Syncs",
     icon: mdiSync,
+    sidebar: true,
   },
   {
     key: "/dashboard/syncs/:jobId",
@@ -41,6 +45,7 @@ const dashboardRoutes = [
     label: "Job ID",
     labelParams: "jobId",
     icon: mdiSync,
+    sidebar: false,
   },
   {
     key: "/dashboard/syncs/:jobId/:runId",
@@ -48,18 +53,21 @@ const dashboardRoutes = [
     label: "Run ID",
     labelParams: "runId",
     icon: mdiSync,
+    sidebar: false,
   },
   {
     key: "/dashboard/home",
     path: "/dashboard/home",
     label: "Dashboard",
     icon: mdiViewGridOutline,
+    sidebar: true,
   },
   {
     key: "/dashboard/organizations",
     path: "/dashboard/organizations",
     label: "Organizations",
     icon: mdiMapOutline,
+    sidebar: true,
   },
 ];
 

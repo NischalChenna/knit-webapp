@@ -60,31 +60,34 @@ const DashboardLayout: React.FC = () => {
           selectedKeys={[location.pathname]}
           overflowedIndicator={<EllipsisOutlined />}
         >
-          {dashboardRoutes.map((route: any) => {
-            console.log(route.icon);
-            return (
-              <Menu.Item key={route.key} className="px-1">
-                <Link to={route.path} className="text-decoration-none">
-                  <Row>
-                    <Col md="3" sm="3" className="me-2">
-                      <Icon
-                        className="align-text-top"
-                        size={"18px"}
-                        path={route.icon}
-                      />
-                    </Col>
-                    <span
-                      data-testid={
-                        route.label.toLowerCase().split(" ").join("-") + "-nav"
-                      }
-                    >
-                      {route.label}
-                    </span>
-                  </Row>
-                </Link>
-              </Menu.Item>
-            );
-          })}
+          {dashboardRoutes
+            .filter((rt) => rt.sidebar)
+            .map((route: any) => {
+              console.log(route.icon);
+              return (
+                <Menu.Item key={route.key} className="px-1">
+                  <Link to={route.path} className="text-decoration-none">
+                    <Row>
+                      <Col md="3" sm="3" className="me-2">
+                        <Icon
+                          className="align-text-top"
+                          size={"18px"}
+                          path={route.icon}
+                        />
+                      </Col>
+                      <span
+                        data-testid={
+                          route.label.toLowerCase().split(" ").join("-") +
+                          "-nav"
+                        }
+                      >
+                        {route.label}
+                      </span>
+                    </Row>
+                  </Link>
+                </Menu.Item>
+              );
+            })}
         </Menu>
       </Sider>
       <Layout>
