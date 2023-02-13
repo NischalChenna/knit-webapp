@@ -10,7 +10,7 @@ import DonutChartFilterCard from "./DonutChartFilterCard";
 import SplineChartFilterCard from "./SplineChartFilterCard";
 import Countdown from "./Countdown";
 import SelectableTags from "./SelectableTags";
-
+import CustomFilters from "./CustomFilters";
 export {
   TestimonialCard,
   SignUpHead,
@@ -24,4 +24,6 @@ export {
   SplineAreaChart,
   DonutChartFilterCard,
   SplineChartFilterCard,
+  CustomFilters
+  
 };
