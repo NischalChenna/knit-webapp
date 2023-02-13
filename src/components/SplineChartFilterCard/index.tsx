@@ -10,6 +10,7 @@ interface FilterCardProps {
     selectedValue: string;
     options: Array<any>;
   }>;
+  filterUpdateFunction: (arg:Record<string, any>) => any
 }
 
 const SplineChartFilterCard = (props: FilterCardProps): JSX.Element => {
@@ -36,10 +37,6 @@ const SplineChartFilterCard = (props: FilterCardProps): JSX.Element => {
     "2018-09-19T16:30:00.000Z",
   ];
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
-
   return (
     <Layout className="spline-chart-filter-card">
       <header className="header">
@@ -63,7 +60,7 @@ const SplineChartFilterCard = (props: FilterCardProps): JSX.Element => {
                     <Select
                       style={{ width: 100, marginRight: "0.3rem" }}
                       key={i}
-                      onChange={handleChange}
+                      onChange={(value) => props.filterUpdateFunction({[e.filterType]: value})}
                       defaultValue={
                         e.selectedValue ? e.selectedValue : e.options[0].value
                       }
