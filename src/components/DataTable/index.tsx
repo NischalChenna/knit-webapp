@@ -2,10 +2,6 @@ import { TableOutlined } from "@ant-design/icons";
 import { mdiTableLargeRemove } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Empty, Skeleton, Table } from "antd";
-import { ColumnsType } from "antd/es/table";
-import React from "react";
-import { DataType } from "../../pages/Organizations/interfaces/DataType";
-import TableSkeleton from "../TableSkeleton";
 
 interface DataTableProps {
   data: readonly any[] | undefined;

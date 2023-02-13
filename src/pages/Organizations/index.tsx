@@ -51,6 +51,7 @@ export default function Organizations() {
   const [seriesValues, setSeriesValues] = useState<number[]>([]);
   const [labelValues, setLabelValues] = useState<string[]>([]);
   const [data, setData] = useState<DataType[]>([]);
+  const [orgNumber, setOrgNumber] = useState<number>(0);
 
   useEffect(() => {
     getOrganizations();
@@ -116,148 +117,23 @@ export default function Organizations() {
       render: renderDeleteButton,
     },
   ];
-  const data1: DataType[] = [
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-    {
-      appId: "msteams",
-      category: "COMMS",
-      integrationState: "open",
-      createdAt: "null",
-      doneBy: "nischal@rapido.com",
-      organization: "Rapido",
-    },
-  ];
   function getOrganizations() {
     setLoading(true);
     getAxiosInstance()
       .get("/app.getOrganizations", {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX1NGc0V0MWIxdlY1aUh3TEFrb3ZrMXEiLCJleHBpcmVzQXQiOjE2NzcxNDQ3MzJ9.7H2DBUhsuHS0TJtBcIxAIODz59PuwxKC0v2LWFeytCI",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX3pFMkFNUWVCZjlxckZnOWkxSjgwVkgiLCJleHBpcmVzQXQiOjE2NzcxNDU3MTl9.wzgaiK9dvIntyKA4kFx1iRf_suKhAYo-GX_AViJ4CwE",
         },
       })
       .then((res) => {
         if (res.data.success) {
-          console.log("res " + res.data.msg);
+          const { orgCount, organizationDetails, categoryDetails } =
+            res.data.msg;
+          setLabelValues(Object.keys(categoryDetails));
+          setSeriesValues(Object.values(categoryDetails));
+          setOrgNumber(orgCount);
+          setData(organizationDetails);
         }
       })
       .catch((err) => {
@@ -279,29 +155,27 @@ export default function Organizations() {
         <Row align={"middle"} className="orgHeadRow">
           <div>
             <div className="orgText">Total Organizations Being Served</div>
-            <div className="numOrg pt-2 pb-3">{12}</div>
+            <div className="numOrg pt-2 pb-3">{orgNumber}</div>
           </div>
           <div className="filters">
             <SelectTimePeriod className="timeperiod" />
             <SelectCategory />
           </div>
         </Row>
-        <Row justify={"center"} className="orgRow">
+        <Row align={"middle"} justify={"center"} className="orgRow">
           <HalfDonutChart
             series={seriesValues}
             label={labelValues}
             legend={legendData}
-            dataLoaded={false}
+            dataLoaded={!loading}
           />
         </Row>
-        <Row justify={"center"}>
-          <DataTable
-            columns={tableColumns}
-            data={data}
-            dataLoaded={false}
-            pagination={true}
-          />
-        </Row>
+        <DataTable
+          columns={tableColumns}
+          data={data}
+          dataLoaded={!loading}
+          pagination={true}
+        />
       </div>
     </div>
   );
