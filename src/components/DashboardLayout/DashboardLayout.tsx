@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import dashboardRoutes from "../../routes/dashboard";
+import { DashboardHome } from "../../pages";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -109,7 +110,7 @@ const DashboardLayout: React.FC = () => {
           </div>
         </Header>
         <Routes>
-          <Route path="/home" element={<div>Home</div>} />
+          <Route path="/home" element={<DashboardHome />} />
           <Route path="/issues" element={<div>Issues</div>} />
           <Route path="/logs" element={<div>Logs</div>} />
           <Route path="/accounts" element={<div>Accounts</div>} />

@@ -11,6 +11,7 @@ import {
   SignUpFooter,
 } from "../components";
 
+
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const [userEmail, setEmail] = useState<string | null>(null);
@@ -73,6 +74,7 @@ const SignUp: React.FC = () => {
           }[step]
         }
         <SignUpFooter newUser={newUser} toggleNewUser={toggleNewUser} />
+
       </Col>
     </Row>
   );

@@ -52,6 +52,7 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
+            <Route path="/home" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/" element={<Navigate to="/signup" replace />} />
             <Route path="/404" element={<Page404 />} />
