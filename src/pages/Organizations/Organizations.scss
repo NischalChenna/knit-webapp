@@ -1,0 +1,18 @@
+.organizations {
+    .filters {
+        display: flex;
+        justify-content: space-between;
+        .timeperiod {
+            margin-right: 2em;
+        }
+    }
+}
+.deleteColumn{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: $--k-error;
+    .deleteIcon {
+        margin-right: 1ex;
+    }
+}

@@ -14,7 +14,6 @@ function APIKeys(props: ApiKeys) {
     if (tooltip == "Copied") {
       setTimeout(function () {
         setTooltip("Copy");
-        console.log("1222");
       }, 1000);
     }
   }, [tooltip]);

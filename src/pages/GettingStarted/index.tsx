@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Layout, notification } from "antd";
+import { Row, Col, Layout, notification, Spin } from "antd";
 import APIKeys from "../../components/APIKeys";
 import WebhookUrls from "../../components/WebhookUrls";
 import getAxiosInstance from "../../services/Api";
 import "../GettingStarted/GettingStarted.scss";
 import Icon from "@mdi/react";
 import { mdiOpenInNew } from "@mdi/js";
+import Loading from "../../components/Loading";
 
 const GettingStarted: React.FC = () => {
   const [prodApiKey, setProdApiKey] = useState<string>("");
@@ -38,7 +39,7 @@ const GettingStarted: React.FC = () => {
   return (
     <>
       {loading ? (
-        <>loading.....</>
+        <Loading />
       ) : (
         <div className="gettingStarted">
           <h4>Getting Started</h4>

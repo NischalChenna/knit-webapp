@@ -56,10 +56,10 @@ const dashboardRoutes = [
     icon: mdiViewGridOutline,
   },
   {
-    key: "/dashboard/organisations",
-    path: "/dashboard/organisations",
-    label: "Organisations",
-    icon: mdiHexagonMultipleOutline,
+    key: "/dashboard/organizations",
+    path: "/dashboard/organizations",
+    label: "Organizations",
+    icon: mdiMapOutline,
   },
 ];
 

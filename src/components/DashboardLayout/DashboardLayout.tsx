@@ -13,6 +13,7 @@ import { useLocation, Link } from "react-router-dom";
 import dashboardRoutes from "../../routes/dashboard";
 import { DashboardHome } from "../../pages";
 import DashBreadCrumb from "../Breadcrumb";
+import Organizations from "../../pages/Organizations";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -120,6 +121,7 @@ const DashboardLayout: React.FC = () => {
           <Route path="/logs" element={<div>Logs</div>} />
           <Route path="/accounts" element={<div>Accounts</div>} />
           <Route path="/getting-started" element={<GettingStarted />} />
+          <Route path="/organizations" element={<Organizations />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </Layout>
