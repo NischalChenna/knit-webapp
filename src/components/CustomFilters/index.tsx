@@ -1,7 +1,7 @@
 import { useState, Fragment, useEffect } from "react";
 import { CustomFilterObject } from "../../interfaces";
 import { Select, Skeleton } from "antd";
-import { STATIC_FILTERS } from "../../utils/constants";
+import { STATIC_FILTERS, DEFAULT_FILTER_OPTIONS } from "../../utils/constants";
 import getAxiosInstance from "../../services/Api";
 interface CustomFilterProps {
   filterKeys: string[];
@@ -14,13 +14,21 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
     initializeFilters();
   }, []);
 
+  useEffect(() => {
+    setFilterDataLoaded(true);
+  }, [filtersObj]);
+
   const initializeFilters = () => {
     const initialFiltersObj: Record<string, any> = {};
     const dynamicFilters: string[] = [];
 
     props.filterKeys.forEach((filterK: string) => {
-      if (!STATIC_FILTERS[filterK]) {
+      if (!STATIC_FILTERS[filterK] || filterK != "date_range") {
         dynamicFilters.push(filterK);
+        initialFiltersObj[filterK] = {
+          options: DEFAULT_FILTER_OPTIONS,
+          selectedValue: DEFAULT_FILTER_OPTIONS[0].value,
+        };
       } else {
         initialFiltersObj[filterK] = {
           options: STATIC_FILTERS[filterK].options,
@@ -46,14 +54,15 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
           });
           setFiltersObj(initialFiltersObj);
           props.onFiltersChange(generateFilterApiObject(initialFiltersObj));
-
-          setFilterDataLoaded(true);
+        })
+        .catch((err) => {
+          console.error(err);
+          setFiltersObj(initialFiltersObj);
+          props.onFiltersChange(generateFilterApiObject(initialFiltersObj));
         });
     } else {
       setFiltersObj(initialFiltersObj);
       props.onFiltersChange(generateFilterApiObject(initialFiltersObj));
-
-      setFilterDataLoaded(true);
     }
   };
 

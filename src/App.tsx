@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { persistor, store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+
 import { Spin, ConfigProvider } from "antd";
 const Authorize = React.lazy(() => import("./pages/Authorize"));
 const Home = React.lazy(() => import("./pages/Home"));
@@ -12,7 +16,6 @@ const DashboardLayout = React.lazy(
 
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {
-
   return (
     <ConfigProvider
       theme={{
@@ -34,35 +37,40 @@ function App() {
         },
       }}
     >
-      <React.Suspense
-        fallback={
-          <div
-            id="loading-wrapper"
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100vh",
-            }}
+      {" "}
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <React.Suspense
+            fallback={
+              <div
+                id="loading-wrapper"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100vh",
+                }}
+              >
+                <Spin tip="Loading" size="small" />
+              </div>
+            }
           >
-            <Spin tip="Loading" size="small" />
-          </div>
-        }
-      >
-        <BrowserRouter>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/" element={<Navigate to="/signup" replace />} />
-            <Route path="/404" element={<Page404 />} />
-            <Route path="/oauth/authorize" element={<Authorize />} />
-            <Route path="/admin/authorize" element={<AdminAuth />} />
-            <Route path="/dashboard/*" element={<DashboardLayout />} />
-            <Route path="*" element={<Navigate to="/404" replace />} />
-          </Routes>
-        </BrowserRouter>
-      </React.Suspense>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/" element={<Navigate to="/signup" replace />} />
+                <Route path="/404" element={<Page404 />} />
+                <Route path="/oauth/authorize" element={<Authorize />} />
+                <Route path="/admin/authorize" element={<AdminAuth />} />
+                <Route path="/dashboard/*" element={<DashboardLayout />} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+              </Routes>
+            </BrowserRouter>
+          </React.Suspense>
+        </PersistGate>
+      </Provider>
     </ConfigProvider>
   );
 }

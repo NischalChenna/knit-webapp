@@ -6,7 +6,10 @@ import { OTP_TIMER } from "../../../utils/constants";
 import "./../OtpForm/EnterOtpForm.scss";
 import Countdown from "../../Countdown";
 import { subscribe, unsubscribe } from "../../../utils/events";
-import { time } from "console";
+import { useAppDispatch } from "../../../store/hooks";
+import {  loginUser } from "../../../store/features/user";
+import { useNavigate } from "react-router-dom";
+
 interface optFormProps {
   userEmail: string | null;
   prevStep: Function;
@@ -22,6 +25,10 @@ const OtpInfoForm = (props: optFormProps) => {
   const validateMessages = {
     required: "${label} is required",
   };
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [otpValue, setOtpValue] = useState<any>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const [resendDisabled, setResendDisabled] = useState<boolean>(true);
@@ -33,12 +40,15 @@ const OtpInfoForm = (props: optFormProps) => {
     subscribe("countdownComplete", () => {
       setResendDisabled(false);
     });
+
     return () => {
       unsubscribe("countdownComplete", () => {
         setResendDisabled(true);
       });
     };
   }, []);
+
+
 
   const submitOtp = (e: any): void => {
     e?.preventDefault();
@@ -49,18 +59,15 @@ const OtpInfoForm = (props: optFormProps) => {
         otp: otpValue,
         newUser: props.newUser,
       })
-      .then((res) => {
+      .then(async (res) => {
         if (res.data.success) {
           if (!props.newUser) {
-            localStorage.setItem(
-              "knit_jwt",
-              "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX3pFMkFNUWVCZjlxckZnOWkxSjgwVkgiLCJleHBpcmVzQXQiOjE2NzcxNDU3MTl9.wzgaiK9dvIntyKA4kFx1iRf_suKhAYo-GX_AViJ4CwE"
-            );
-          }
-          props.nextStep();
+            dispatch(loginUser(res.data.msg));
+          } else props.nextStep();
         }
       })
       .catch((err) => {
+        console.error(err);
         notification.error({
           placement: "bottomRight",
           message:

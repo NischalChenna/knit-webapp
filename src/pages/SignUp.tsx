@@ -1,6 +1,6 @@
 import { Row, Col, Button } from "antd";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   AdditionalForm,
@@ -10,8 +10,10 @@ import {
   TestimonialCard,
   SignUpFooter,
 } from "../components";
+import { useAppSelector } from "../store/hooks";
 
 const SignUp: React.FC = () => {
+  const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const [userEmail, setEmail] = useState<string | null>(null);
   const [step, setStep] = useState<number>(0);
@@ -19,13 +21,14 @@ const SignUp: React.FC = () => {
   const updateEmail: Function = (str: string | null): void => {
     setEmail(str);
   };
+
   const nextStep: Function = (): void => {
     switch (step) {
       case 0:
         setStep(step + 1);
         break;
       case 1:
-        newUser ? setStep(step + 1) : navigate("/dashboard/home");
+        newUser ? setStep(step + 1) : null;
         break;
       default:
         break;
@@ -40,9 +43,9 @@ const SignUp: React.FC = () => {
     if (step !== 0) setStep(0);
     if (userEmail) setEmail(null);
   };
-  return (
+  return !isLoggedIn ? (
     <Row justify={"center"}>
-      <Col span={8}>
+      <Col span={8} style={{ minWidth: "600px" }}>
         <SignUpHead newUser={newUser} step={[0, 1].includes(step) ? 1 : 2} />
         {
           {
@@ -72,6 +75,8 @@ const SignUp: React.FC = () => {
         <SignUpFooter newUser={newUser} toggleNewUser={toggleNewUser} />
       </Col>
     </Row>
+  ) : (
+    <Navigate to="/dashboard/home" />
   );
 };
 

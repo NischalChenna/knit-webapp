@@ -152,7 +152,7 @@ export default function Organizations() {
   return (
     <React.Fragment>
       <ScreenTitle />
-      <div className="organizations">
+      <div className="organizations page-card">
         <Row align={"middle"} className="orgHeadRow">
           <div>
             <div className="orgText">Total Organizations Being Served</div>

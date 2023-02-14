@@ -62,7 +62,7 @@ function AdditionalForm(props: OrgFormProps) {
       .post("auth.sendOrgDetails", newMap)
       .then((res: any) => {
         if (res.data.success) {
-          navigate("dashboard/home");
+          navigate("/dashboard/home");
         }
       });
   };

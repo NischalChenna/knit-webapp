@@ -1,5 +1,6 @@
 import { matchRoutes, Route, useLocation } from "react-router-dom";
-import dashboardRoutes from "../../routes/dashboard";
+import getDashboardRoutes from "../../routes/dashboard";
+import { useAppSelector } from "../../store/hooks";
 import "../ScreenTitle/ScreenTitle.scss";
 
 interface ScreenTitleProps {
@@ -8,12 +9,14 @@ interface ScreenTitleProps {
 
 const ScreenTitle = (props: ScreenTitleProps): JSX.Element => {
   const location = useLocation();
-  const pathObjArray = dashboardRoutes.map((path) => {
+  const { isFirstLogin } = useAppSelector((state) => state.user);
+
+  const pathObjArray = getDashboardRoutes(isFirstLogin).map((path) => {
     return { path: path.path };
   });
   const matchedRoute = matchRoutes(pathObjArray, location.pathname);
   if (matchedRoute && matchedRoute.length && !props.title) {
-    const route = dashboardRoutes.find(
+    const route = getDashboardRoutes(isFirstLogin).find(
       (routeObj) => routeObj.path == matchedRoute[0].route.path
     );
     return (

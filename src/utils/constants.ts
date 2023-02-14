@@ -33,3 +33,5 @@ export const STATIC_FILTERS: Record<string, any> = {
     ],
   },
 };
+
+export const DEFAULT_FILTER_OPTIONS = [{ label: "All", value: "All" }];

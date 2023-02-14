@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Layout, Space, Menu, Row, Col, Avatar } from "antd";
+import React, { useState, useEffect } from "react";
+import { Layout, Space, Menu, Row, Col, Avatar, Dropdown } from "antd";
 import Icon from "@mdi/react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import GettingStarted from "../../pages/GettingStarted";
 import type { MenuProps } from "antd";
 import {
@@ -10,12 +10,16 @@ import {
   EllipsisOutlined,
 } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
-import dashboardRoutes from "../../routes/dashboard";
+import getDashboardRoutes from "../../routes/dashboard";
 import { DashboardHome } from "../../pages";
 import DashBreadCrumb from "../Breadcrumb";
 import Organizations from "../../pages/Organizations";
 import ScreenTitle from "../ScreenTitle";
 import Syncs from "../../pages/Syncs";
+import { useAppSelector } from "../../store/hooks";
+import { mdiLogout } from "@mdi/js";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../store/features/user";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -52,8 +56,36 @@ const footerStyle: React.CSSProperties = {
 
 const DashboardLayout: React.FC = () => {
   const location = useLocation();
-  console.log(location.pathname);
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const items: MenuProps["items"] = [
+    {
+      label: (
+        <div className="d-flex">
+          <Icon path={mdiLogout} size={1} />{" "}
+          <span className="ms-2">Logout</span>
+        </div>
+      ),
+      key: "1",
+      onClick: (e: any) => {
+        e?.preventDefault;
+        logout();
+      },
+
+      // icon: <UserOutlined />,
+    },
+  ];
+
+  useEffect(() => {
+    // if (!isLoggedIn) navigate("/signup");
+  }, [isLoggedIn]);
+
+  const logout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider style={{ background: "white" }}>
@@ -62,10 +94,9 @@ const DashboardLayout: React.FC = () => {
           selectedKeys={[location.pathname]}
           overflowedIndicator={<EllipsisOutlined />}
         >
-          {dashboardRoutes
+          {getDashboardRoutes(isFirstLogin)
             .filter((rt) => rt.sidebar)
             .map((route: any) => {
-              console.log(route.icon);
               return (
                 <Menu.Item key={route.key} className="px-1">
                   <Link to={route.path} className="text-decoration-none">
@@ -97,7 +128,7 @@ const DashboardLayout: React.FC = () => {
           className="pe-4"
           style={{
             borderBottom: "1px solid lightgrey",
-            background: "transparent",
+            background: "white",
             position: "sticky",
             top: 0,
             zIndex: 1,
@@ -107,14 +138,24 @@ const DashboardLayout: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Avatar
-            style={{ backgroundColor: "#87d068" }}
-            icon={<UserOutlined />}
-          />
-          <div className="avatar-details ms-2">
-            <h6 className="avatar-details-name mb-1">Firstname LastName</h6>
-            <p className="avatar-details-description mb-0 lh-1">Admin</p>
-          </div>
+          <Dropdown menu={{ items }} placement="bottom">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
+              <Avatar
+                style={{ backgroundColor: "#87d068" }}
+                icon={<UserOutlined />}
+              />
+              <div className="avatar-details ms-2">
+                <h6 className="avatar-details-name mb-1">Firstname LastName</h6>
+                <p className="avatar-details-description mb-0 lh-1">Admin</p>
+              </div>
+            </div>
+          </Dropdown>
         </Header>
         <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
           <DashBreadCrumb />

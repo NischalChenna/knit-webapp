@@ -1,23 +1,11 @@
 import {
   mdiMapOutline,
   mdiViewGridOutline,
-  mdiHexagonMultipleOutline,
   mdiSync,
+  mdiFileKeyOutline,
 } from "@mdi/js";
-const getSvg = (pathStr: string) => {
-  return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="${pathStr}" fill="currentColor"/>
-  </svg>`;
-};
 
 const dashboardRoutes = [
-  {
-    key: "/dashboard/getting-started",
-    path: "/dashboard/getting-started",
-    label: "Getting Started",
-    icon: mdiMapOutline,
-    sidebar: true,
-  },
   {
     key: "/dashboard/accounts",
     path: "/dashboard/accounts",
@@ -70,5 +58,30 @@ const dashboardRoutes = [
     sidebar: true,
   },
 ];
+const onlyFirstTimeRoutes = [
+  {
+    key: "/dashboard/getting-started",
+    path: "/dashboard/getting-started",
+    label: "Getting Started",
+    icon: mdiMapOutline,
+    sidebar: true,
+  },
+];
 
-export default dashboardRoutes;
+const onlyLoginRoutes = [
+  {
+    key: "/dashboard/api-keys",
+    path: "/dashboard/api-keys",
+    label: "API Keys",
+    icon: mdiFileKeyOutline,
+    sidebar: true,
+  },
+];
+
+const getDashboardRoutes = (isFirstLogin: boolean = false) => {
+  return [...dashboardRoutes].concat(
+    isFirstLogin ? onlyFirstTimeRoutes : onlyLoginRoutes
+  );
+};
+
+export default getDashboardRoutes;
