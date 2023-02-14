@@ -125,7 +125,6 @@ const DashboardLayout: React.FC = () => {
               path="/syncs"
               element={
                 <React.Fragment>
-                  <ScreenTitle />
                   <Syncs />
                 </React.Fragment>
               }

@@ -32,42 +32,64 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
     if (dynamicFilters.length > 0) {
       getAxiosInstance()
         .get("app.filtersMetadata", {
-          params: { filters: [...dynamicFilters] },
+          params: { filters: JSON.stringify([...dynamicFilters]) },
           headers: {
             Authorization: `Bearer ` + localStorage.getItem("knit_jwt"),
           },
         })
-        .then((res) => {});
+        .then((res) => {
+          dynamicFilters.forEach((filterK: string) => {
+            initialFiltersObj[filterK] = {
+              options: res.data.msg[filterK].options,
+              selectedValue: res.data.msg[filterK].options[0].value,
+            };
+          });
+          setFiltersObj(initialFiltersObj);
+          props.onFiltersChange(generateFilterApiObject(initialFiltersObj));
+
+          setFilterDataLoaded(true);
+        });
     } else {
       setFiltersObj(initialFiltersObj);
+      props.onFiltersChange(generateFilterApiObject(initialFiltersObj));
+
       setFilterDataLoaded(true);
     }
   };
+
+  const generateFilterApiObject = (
+    customFilterObj: CustomFilterObject
+  ): Record<string, any> => {
+    const newObj: Record<string, any> = {};
+    Object.keys(customFilterObj).forEach((filterStr: string) => {
+      newObj[filterStr] = customFilterObj[filterStr].selectedValue;
+    });
+
+    return newObj;
+  };
   return (
-    <div className="dropdown-box d-flex justify-flex-end">
+    <div className="dropdown-box d-flex justify-flex-end ">
       {filterDataLoaded ? (
         <Fragment>
           {Object.keys(filtersObj).length > 0 &&
             Object.keys(filtersObj).map((filterKey: string, index: number) => {
               return (
                 <Select
-                  style={{ width: 100, marginRight: "0.3rem" }}
+                  style={{ width: "10rem", marginRight: "0.3rem" }}
+                  size={"large"}
                   key={filterKey}
                   onChange={(value) => {
-                    props.onFiltersChange({
+                    const newFilterObj: CustomFilterObject = {
                       ...filtersObj,
-                      filterKey: {
+                      [filterKey]: {
                         ...filtersObj[filterKey],
                         selectedValue: value,
                       },
-                    });
-                    setFiltersObj({
-                      ...filtersObj,
-                      filterKey: {
-                        ...filtersObj[filterKey],
-                        selectedValue: value,
-                      },
-                    });
+                    };
+                    props.onFiltersChange(
+                      generateFilterApiObject(newFilterObj)
+                    );
+                    setFiltersObj(newFilterObj);
                   }}
                   defaultValue={
                     filtersObj[filterKey].selectedValue
@@ -81,8 +103,8 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
         </Fragment>
       ) : (
         <Fragment>
-          <Skeleton className="me-3" active />
-          <Skeleton active />
+          <Skeleton.Input size={"large"} className="me-3" active />
+          <Skeleton.Input size={"large"} active />
         </Fragment>
       )}
     </div>

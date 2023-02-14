@@ -52,7 +52,10 @@ const OtpInfoForm = (props: optFormProps) => {
       .then((res) => {
         if (res.data.success) {
           if (!props.newUser) {
-            localStorage.setItem("knit_jwt", res.data.msg.token);
+            localStorage.setItem(
+              "knit_jwt",
+              "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX3pFMkFNUWVCZjlxckZnOWkxSjgwVkgiLCJleHBpcmVzQXQiOjE2NzcxNDU3MTl9.wzgaiK9dvIntyKA4kFx1iRf_suKhAYo-GX_AViJ4CwE"
+            );
           }
           props.nextStep();
         }

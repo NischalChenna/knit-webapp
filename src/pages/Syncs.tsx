@@ -1,3 +1,4 @@
+import { Row } from "antd";
 import React, { useState, useEffect } from "react";
 import { CustomFilters } from "../components";
 import ScreenTitle from "../components/ScreenTitle";
@@ -7,13 +8,13 @@ const Syncs = () => {
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
   const [syncsData, setSyncsData] = useState(null);
 
-  const filtersChange = (filterObj: CustomFilterObject) => {
-    // api call consuming the filterObj
+  const filtersChange = (filterObj: Record<string, any>) => {
+    console.log("call sync  APi with", filterObj);
   };
   return (
     <React.Fragment>
       <ScreenTitle />
-      <div className="syncs-header d-flex justify-space-between">
+      <Row className="syncs-header" justify={"space-between"}>
         <div className="left-section">
           <span> Total Active syncs</span>
           <h6></h6>
@@ -22,7 +23,7 @@ const Syncs = () => {
           filterKeys={["ORGANIZATIONS", "INTEGRATIONS"]}
           onFiltersChange={filtersChange}
         />
-      </div>
+      </Row>
     </React.Fragment>
   );
 };
