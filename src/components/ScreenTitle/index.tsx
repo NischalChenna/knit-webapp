@@ -2,11 +2,11 @@ import { matchRoutes, Route, useLocation } from "react-router-dom";
 import dashboardRoutes from "../../routes/dashboard";
 import "../ScreenTitle/ScreenTitle.scss";
 
-interface ScreenTitle {
+interface ScreenTitleProps {
   title?: string;
 }
 
-const ScreenTitle = (props: ScreenTitle): JSX.Element => {
+const ScreenTitle = (props: ScreenTitleProps): JSX.Element => {
   const location = useLocation();
   const pathObjArray = dashboardRoutes.map((path) => {
     return { path: path.path };

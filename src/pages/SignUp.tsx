@@ -42,7 +42,7 @@ const SignUp: React.FC = () => {
   };
   return (
     <Row justify={"center"}>
-      <Col span={12}>
+      <Col span={8}>
         <SignUpHead newUser={newUser} step={[0, 1].includes(step) ? 1 : 2} />
         {
           {

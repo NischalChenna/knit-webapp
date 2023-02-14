@@ -40,7 +40,6 @@ const OtpInfoForm = (props: optFormProps) => {
     };
   }, []);
 
-
   const submitOtp = (e: any): void => {
     e?.preventDefault();
     setLoading(true);
@@ -52,6 +51,9 @@ const OtpInfoForm = (props: optFormProps) => {
       })
       .then((res) => {
         if (res.data.success) {
+          if (!props.newUser) {
+            localStorage.setItem("knit_jwt", res.data.msg.token);
+          }
           props.nextStep();
         }
       })

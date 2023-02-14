@@ -15,6 +15,7 @@ import { DashboardHome } from "../../pages";
 import DashBreadCrumb from "../Breadcrumb";
 import Organizations from "../../pages/Organizations";
 import ScreenTitle from "../ScreenTitle";
+import Syncs from "../../pages/Syncs";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -69,21 +70,21 @@ const DashboardLayout: React.FC = () => {
                 <Menu.Item key={route.key} className="px-1">
                   <Link to={route.path} className="text-decoration-none">
                     <Row>
-                      <Col md="3" sm="3" className="me-2">
+                      <Col span={4} className="me-1">
                         <Icon
-                          className="align-text-top"
+                          className="align-middle"
                           size={"18px"}
                           path={route.icon}
                         />
                       </Col>
-                      <span
+                      <Col
                         data-testid={
                           route.label.toLowerCase().split(" ").join("-") +
                           "-nav"
                         }
                       >
                         {route.label}
-                      </span>
+                      </Col>
                     </Row>
                   </Link>
                 </Menu.Item>
@@ -123,9 +124,10 @@ const DashboardLayout: React.FC = () => {
             <Route
               path="/syncs"
               element={
-                <div>
+                <React.Fragment>
                   <ScreenTitle />
-                </div>
+                  <Syncs />
+                </React.Fragment>
               }
             />
             <Route

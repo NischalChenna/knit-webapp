@@ -2,6 +2,7 @@ import { mdiTrashCanOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Col, notification, Row, Space } from "antd";
 import { ColumnsType } from "rc-table/lib/interface";
+import React from "react";
 import { useEffect, useState } from "react";
 import { HalfDonutChart } from "../../components";
 import DataTable from "../../components/DataTable";
@@ -149,7 +150,7 @@ export default function Organizations() {
       });
   }
   return (
-    <div>
+    <React.Fragment>
       <ScreenTitle />
       <div className="organizations">
         <Row align={"middle"} className="orgHeadRow">
@@ -177,6 +178,6 @@ export default function Organizations() {
           pagination={true}
         />
       </div>
-    </div>
+    </React.Fragment>
   );
 }
