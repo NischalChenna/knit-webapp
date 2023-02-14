@@ -31,17 +31,12 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
     console.log("dynamicFilters", dynamicFilters);
     if (dynamicFilters.length > 0) {
       getAxiosInstance()
-        .post(
-          "app.filtersMetadata",
-          {
-            filters: [...dynamicFilters],
+        .get("app.filtersMetadata", {
+          params: { filters: [...dynamicFilters] },
+          headers: {
+            Authorization: `Bearer ` + localStorage.getItem("knit_jwt"),
           },
-          {
-            headers: {
-              Authorization: `Bearer ` + localStorage.getItem("knit_jwt"),
-            },
-          }
-        )
+        })
         .then((res) => {});
     } else {
       setFiltersObj(initialFiltersObj);
