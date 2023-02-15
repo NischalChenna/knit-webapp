@@ -10,9 +10,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 const AdminAuth = React.lazy(() => import("./pages/AdminAuth"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 
-const DashboardLayout = React.lazy(
-  () => import("./components/DashboardLayout/DashboardLayout")
-);
+const DashboardLayout = React.lazy(() => import("./pages/DashboardLayout"));
 
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {

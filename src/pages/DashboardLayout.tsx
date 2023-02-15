@@ -2,21 +2,21 @@ import React, { useEffect } from "react";
 import { Layout, Menu, Avatar, Dropdown } from "antd";
 import Icon from "@mdi/react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import GettingStarted from "../../pages/GettingStarted";
+import GettingStarted from "./GettingStarted";
 import type { MenuProps } from "antd";
 import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
-import getDashboardRoutes from "../../routes/dashboard";
-import { DashboardHome } from "../../pages";
-import DashBreadCrumb from "../Breadcrumb";
-import Organizations from "../../pages/Organizations";
-import ScreenTitle from "../ScreenTitle";
-import Syncs from "../../pages/Syncs";
-import { useAppSelector } from "../../store/hooks";
+import getDashboardRoutes from "../routes/dashboard";
+import { DashboardHome } from ".";
+import DashBreadCrumb from "../components/Breadcrumb";
+import Organizations from "./Organizations";
+import ScreenTitle from "../components/ScreenTitle";
+import Syncs from "./Syncs";
+import { useAppSelector } from "../store/hooks";
 import { mdiLogout } from "@mdi/js";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../store/features/user";
-import IntegrationAccounts from "../../pages/IntegrationAccounts";
+import { logoutUser } from "../store/features/user";
+import IntegrationAccounts from "./IntegrationAccounts";
 
 const { Header, Sider } = Layout;
 
@@ -50,11 +50,11 @@ const footerStyle: React.CSSProperties = {
   backgroundColor: "#7dbcea",
 };
 
-const DashboardLayout = () => {
+function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
-  // const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
-  // const dispatch = useDispatch();
+  const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
   const items: MenuProps["items"] = [
     {
       label: (
@@ -66,20 +66,20 @@ const DashboardLayout = () => {
       key: "1",
       onClick: (e: any) => {
         e?.preventDefault;
-        // logout();
+        logout();
       },
 
       // icon: <UserOutlined />,
     },
   ];
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) navigate("/signup");
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) navigate("/signup");
+  }, [isLoggedIn]);
 
-  // const logout = () => {
-  //   dispatch(logoutUser());
-  // };
+  const logout = () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <Layout style={{ height: "100vh" }}>
@@ -88,7 +88,7 @@ const DashboardLayout = () => {
           selectedKeys={[location.pathname]}
           overflowedIndicator={<EllipsisOutlined />}
         >
-          {getDashboardRoutes(true)
+          {getDashboardRoutes(isFirstLogin)
             .filter((rt) => rt.sidebar)
             .map((route: any) => {
               return (
@@ -153,7 +153,7 @@ const DashboardLayout = () => {
         <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
           <DashBreadCrumb />
           <Routes>
-            {/* <Route path="/home" element={<DashboardHome />} /> */}
+            <Route path="/home" element={<DashboardHome />} />
             <Route path="/issues" element={<div>Issues</div>} />
             <Route
               path="/syncs"
@@ -189,5 +189,5 @@ const DashboardLayout = () => {
       </Layout>
     </Layout>
   );
-};
+}
 export default DashboardLayout;
