@@ -84,77 +84,77 @@ function DashboardLayout() {
   return (
     // <Layout style={{ height: "100vh" }}>
 
-    <Layout>
-      <Header
-        className="pe-4"
-        style={{
-          borderBottom: "1px solid lightgrey",
-          background: "white",
-          position: "sticky",
-          top: 0,
-          zIndex: 1,
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        }}
-      >
-        <Dropdown menu={{ items }} placement="bottom">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-            }}
-          >
-            <Avatar
-              style={{ backgroundColor: "#87d068" }}
-              icon={<UserOutlined />}
-            />
-            <div className="avatar-details ms-2">
-              <h6 className="avatar-details-name mb-1">Firstname LastName</h6>
-              <p className="avatar-details-description mb-0 lh-1">Admin</p>
+    // <Layout>
+    //   <Header
+    //     className="pe-4"
+    //     style={{
+    //       borderBottom: "1px solid lightgrey",
+    //       background: "white",
+    //       position: "sticky",
+    //       top: 0,
+    //       zIndex: 1,
+    //       width: "100%",
+    //       display: "flex",
+    //       justifyContent: "flex-end",
+    //       alignItems: "center",
+    //     }}
+    //   >
+    //     <Dropdown menu={{ items }} placement="bottom">
+    //       <div
+    //         style={{
+    //           display: "flex",
+    //           justifyContent: "flex-end",
+    //           alignItems: "center",
+    //         }}
+    //       >
+    //         <Avatar
+    //           style={{ backgroundColor: "#87d068" }}
+    //           icon={<UserOutlined />}
+    //         />
+    //         <div className="avatar-details ms-2">
+    //           <h6 className="avatar-details-name mb-1">Firstname LastName</h6>
+    //           <p className="avatar-details-description mb-0 lh-1">Admin</p>
+    //         </div>
+    //       </div>
+    //     </Dropdown>
+    //   </Header>
+    <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
+      <DashBreadCrumb />
+      <Routes>
+        <Route path="/home" element={<DashboardHome />} />
+        <Route path="/issues" element={<div>Issues</div>} />
+        <Route
+          path="/syncs"
+          element={
+            <React.Fragment>
+              <Syncs />
+            </React.Fragment>
+          }
+        />
+        <Route
+          path="/syncs/:jobId"
+          element={
+            <div>
+              <ScreenTitle />
             </div>
-          </div>
-        </Dropdown>
-      </Header>
-      <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
-        <DashBreadCrumb />
-        <Routes>
-          <Route path="/home" element={<DashboardHome />} />
-          <Route path="/issues" element={<div>Issues</div>} />
-          <Route
-            path="/syncs"
-            element={
-              <React.Fragment>
-                <Syncs />
-              </React.Fragment>
-            }
-          />
-          <Route
-            path="/syncs/:jobId"
-            element={
-              <div>
-                <ScreenTitle />
-              </div>
-            }
-          />
-          <Route
-            path="/syncs/:jobId/:runId"
-            element={
-              <div>
-                <ScreenTitle />
-              </div>
-            }
-          />
-          <Route path="/logs" element={<div>Logs</div>} />
-          <Route path="/accounts" element={<IntegrationAccounts />} />
-          <Route path="/getting-started" element={<GettingStarted />} />
-          <Route path="/organizations" element={<Organizations />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
-        </Routes>
-      </div>
-    </Layout>
+          }
+        />
+        <Route
+          path="/syncs/:jobId/:runId"
+          element={
+            <div>
+              <ScreenTitle />
+            </div>
+          }
+        />
+        <Route path="/logs" element={<div>Logs</div>} />
+        <Route path="/accounts" element={<IntegrationAccounts />} />
+        <Route path="/getting-started" element={<GettingStarted />} />
+        <Route path="/organizations" element={<Organizations />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
+      </Routes>
+    </div>
+    // </Layout>
     // </Layout>
   );
 }
