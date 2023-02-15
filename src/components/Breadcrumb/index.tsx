@@ -1,4 +1,4 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb } from "antd/es";
 import { useLocation, Link, matchRoutes } from "react-router-dom";
 import { mdiHomeOutline } from "@mdi/js";
 import Icon from "@mdi/react";
