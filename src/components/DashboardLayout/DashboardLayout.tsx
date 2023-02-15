@@ -50,7 +50,7 @@ const footerStyle: React.CSSProperties = {
   backgroundColor: "#7dbcea",
 };
 
-const DashboardLayout: React.FC = () => {
+const DashboardLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
