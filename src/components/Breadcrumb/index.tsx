@@ -10,10 +10,7 @@ const DashBreadCrumb = () => {
   console.log("locatuionObj", location);
   const pathSnippets = location.pathname.split("/").filter((i) => i);
   return (
-    <Breadcrumb
-      style={{ fontWeight: "bold" }}
-      separator={<span className="fw-bolder">{`>`}</span>}
-    >
+    <Breadcrumb style={{ fontWeight: "bold" }} separator={`>`}>
       <Breadcrumb.Item key="home" className="py-2">
         <Link className="text-decoration-none" to="/dashboard/home">
           <Icon path={mdiHomeOutline} size={1} />
