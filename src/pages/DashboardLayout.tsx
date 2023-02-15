@@ -119,7 +119,7 @@ function DashboardLayout() {
     //     </Dropdown>
     //   </Header>
     <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
-      <DashBreadCrumb />
+      {/* <DashBreadCrumb /> */}
       <Routes>
         <Route path="/home" element={<DashboardHome />} />
         <Route path="/issues" element={<div>Issues</div>} />
