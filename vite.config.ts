@@ -44,6 +44,7 @@ export default defineConfig({
     alias: {
       "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
       "@/": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "src/"),
+      "antd/lib": "antd/es",
     },
   },
 });
