@@ -5,7 +5,7 @@ import Icon from "@mdi/react";
 import getDashboardRoutes from "../../routes/dashboard";
 import { useAppSelector } from "../../store/hooks";
 function DashBreadCrumb() {
-  const { isFirstLogin } = useAppSelector((state) => state.user);
+  const isFirstLogin = true;
   const location = useLocation();
   console.log("locatuionObj", location);
   const pathSnippets = location.pathname.split("/").filter((i) => i);
