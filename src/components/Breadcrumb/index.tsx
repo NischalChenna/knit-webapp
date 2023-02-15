@@ -12,13 +12,13 @@ function DashBreadCrumb() {
   return (
     <Breadcrumb style={{ fontWeight: "bold" }} separator={`>`}>
       <Breadcrumb.Item key="home" className="py-2">
-        <Link
+        {/* <Link
           className="text-decoration-none"
           to="/dashboard/home"
           key={"home"}
-        >
-          <Icon path={mdiHomeOutline} size={1} />
-        </Link>
+        > */}
+        <Icon path={mdiHomeOutline} size={1} />
+        {/* </Link> */}
       </Breadcrumb.Item>
       {pathSnippets.map((_, index) => {
         if (index > 0) {
@@ -34,15 +34,15 @@ function DashBreadCrumb() {
             if (_ != "home")
               return (
                 <Breadcrumb.Item key={url} className="py-2">
-                  <Link className="text-decoration-none" to={url} key={url}>
-                    {crumbRouteObj?.label}
-                    {crumbRouteObj?.labelParams
-                      ? " : " +
-                        matchedRoute[0]["params"][
-                          crumbRouteObj?.labelParams as string
-                        ]
-                      : null}
-                  </Link>
+                  {/* <Link className="text-decoration-none" to={url} key={url}> */}
+                  {crumbRouteObj?.label}
+                  {crumbRouteObj?.labelParams
+                    ? " : " +
+                      matchedRoute[0]["params"][
+                        crumbRouteObj?.labelParams as string
+                      ]
+                    : null}
+                  {/* </Link> */}
                 </Breadcrumb.Item>
               );
           }
