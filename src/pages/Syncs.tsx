@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { CustomFilters } from "../components";
 import ScreenTitle from "../components/ScreenTitle";
 import { CustomFilterObject } from "../interfaces";
-import { DataType } from "./Organizations/interfaces/DataType";
 import moment from "moment";
 import DataTable from "../components/DataTable";
 const Syncs = () => {
@@ -53,7 +52,7 @@ const Syncs = () => {
     <React.Fragment>
       <ScreenTitle />
       <div className="page-card">
-        <Row className="syncs-header" justify={"space-between"} >
+        <Row className="syncs-header" justify={"space-between"}>
           <div className="left-section">
             <span> Total Active syncs</span>
             <h5 className="pt-2">

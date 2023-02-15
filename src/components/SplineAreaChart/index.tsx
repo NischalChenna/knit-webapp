@@ -1,5 +1,3 @@
-import Chart from "react-apexcharts";
-
 interface SplineAreaChartProps {
   seriesValues: Array<number>;
   categoriesValues: Array<string>;
@@ -30,7 +28,7 @@ const SplineAreaChart = (props: SplineAreaChartProps): JSX.Element => {
     },
   };
 
-  return <Chart options={options} series={series} type="area" height={350} />;
+  return <></>;
 };
 
 export default SplineAreaChart;
