@@ -1,32 +1,27 @@
 import { defineConfig } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
-import react from "@vitejs/plugin-react";
+import react from '@vitejs/plugin-react';
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
+
 export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        presets: ["@babel/preset-react"],
-        // Your plugins run before any built-in transform (eg: Fast Refresh)
-        plugins: ["@babel/plugin-transform-react-jsx-source"],
-        // Use .babelrc files
-        babelrc: false,
-        // Use babel.config.js files
-        configFile: false,
+  plugins: [viteCommonjs(), react()],
+  build: {
+    commonjsOptions: {
+      defaultIsModuleExports(id) {
+        try {
+          const module = require(id);
+          if (module?.default) {
+            return false;
+          }
+          return 'auto';
+        } catch (error) {
+          return 'auto';
+        }
       },
-    }),
-    //reactRefresh(),
-    //   vitePluginImp({
-    //     libList: [
-    //       {
-    //         libName: 'antd',
-    //         style: (name) => {
-    //           return `antd/lib/${name}/style/index.less`;
-    //         },
-    //       },
-    //     ],
-    //   }),
-  ],
+      transformMixedEsModules: true,
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {

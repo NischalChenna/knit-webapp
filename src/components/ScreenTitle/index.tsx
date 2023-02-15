@@ -1,5 +1,5 @@
 import { matchRoutes, Route, useLocation } from "react-router-dom";
-import getDashboardRoutes from "../../routes/dashboard";
+import {getDashboardRoutes} from "../../routes/dashboard";
 import { useAppSelector } from "../../store/hooks";
 import "../ScreenTitle/ScreenTitle.scss";
 
