@@ -40,7 +40,7 @@ const DounutChartCardDashboard = (props:InfoProps) => {
         </Title>
         <Title level={1}>{props.info.count}</Title>
         </div>
-        <HalfDonutChart series={seriesValues} label={labelValues} legend={legendData}/>
+        <HalfDonutChart dataLoaded={true} series={seriesValues} label={labelValues} legend={legendData}/>
       </div>
       <div className="link-box">
       <Link className="link-text" to={props.info.route}>
