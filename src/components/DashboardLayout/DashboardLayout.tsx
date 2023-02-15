@@ -153,7 +153,7 @@ const DashboardLayout: React.FC = () => {
         <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
           <DashBreadCrumb />
           <Routes>
-            <Route path="/home" element={<DashboardHome />} />
+            {/* <Route path="/home" element={<DashboardHome />} /> */}
             <Route path="/issues" element={<div>Issues</div>} />
             <Route
               path="/syncs"
