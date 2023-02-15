@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { KnitWeb } from "../components/KnitAuth";
-import { useEffect, useState } from "react";
+import  React, { useEffect, useState }  from "react";
 
 function AdminAuth() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,6 +25,7 @@ function AdminAuth() {
   };
 
   return (
+    <React.Fragment>
     <KnitWeb
       authSessionToken={adminDetails.token}
       adminMode={Object.keys(adminDetails).length > 0}
@@ -33,7 +34,7 @@ function AdminAuth() {
       onSuccess={(e) => {
         onSuccess(e);
       }}
-    ></KnitWeb>
+    ></KnitWeb></React.Fragment>
   );
 }
 
