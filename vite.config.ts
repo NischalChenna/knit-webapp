@@ -40,7 +40,7 @@ export default defineConfig({
   //   },
   // },
   resolve: {
-   // preserveSymlinks: true,
+   preserveSymlinks: true,
     alias: {
       "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
       "@/": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "src/"),

@@ -7,7 +7,7 @@ interface SelectCategoryProps {
 }
 
 function SelectCategory(props: SelectCategoryProps) {
-  const categories: string[] = ["HRMS", "COMMS", "All Categories"];
+  const categories: string[] = ["HRIS", "COMMS", "All Categories"];
   return (
     <Select
       style={{ width: "10em" }}

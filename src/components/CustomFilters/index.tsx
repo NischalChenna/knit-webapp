@@ -23,7 +23,7 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
     const dynamicFilters: string[] = [];
 
     props.filterKeys.forEach((filterK: string) => {
-      if (!STATIC_FILTERS[filterK] || filterK != "date_range") {
+      if (!STATIC_FILTERS[filterK] || filterK == "date_range") {
         dynamicFilters.push(filterK);
         initialFiltersObj[filterK] = {
           options: DEFAULT_FILTER_OPTIONS,

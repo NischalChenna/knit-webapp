@@ -4,6 +4,8 @@ import getAxiosInstance from "../../../services/Api";
 import { useNavigate } from "react-router-dom";
 import SelectableTags from "../../SelectableTags";
 import { TagOption } from "../../../interfaces";
+import { useAppDispatch } from "../../../store/hooks";
+import { loginUser } from "../../../store/features/user";
 
 interface OrgFormProps {
   userEmail: string | null;
@@ -12,8 +14,9 @@ interface OrgFormProps {
 
 function AdditionalForm(props: OrgFormProps) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   // const categories: string[] = [
-  //   "HRMS",
+  //   "HRIS",
   //   "Communication",
   //   "Accounting",
   //   "CRM",
@@ -22,7 +25,7 @@ function AdditionalForm(props: OrgFormProps) {
   //   "ERP",
   // ];
   const categories: TagOption[] = [
-    { label: "HRMS" },
+    { label: "HRIS" },
     { label: "Communication" },
     { label: "Accounting" },
     { label: "CRM" },
@@ -62,6 +65,7 @@ function AdditionalForm(props: OrgFormProps) {
       .post("auth.sendOrgDetails", newMap)
       .then((res: any) => {
         if (res.data.success) {
+          dispatch(loginUser({ ...res.data.msg, isFirstLogin: true }));
           navigate("/dashboard/home");
         }
       });

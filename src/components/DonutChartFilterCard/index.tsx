@@ -16,7 +16,7 @@ const DonutChartFilterCard = (props: FilterCardProps): JSX.Element => {
   const [selectedValues, setSelectedValues] = React.useState({});
   const seriesValues: number[] = [100, 55, 41, 17, 19, 23, 45];
   const labelValues: string[] = [
-    "HRMS",
+    "HRIS",
     "Communication",
     "Accounting",
     "CRM",

@@ -2,6 +2,7 @@ import { TableOutlined } from "@ant-design/icons";
 import { mdiTableLargeRemove } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Empty, Skeleton, Table } from "antd";
+import TableSkeleton from "../TableSkeleton";
 
 interface DataTableProps {
   data: readonly any[] | undefined;
@@ -22,13 +23,7 @@ const DataTable = ({
     },
   };
   return !dataLoaded ? (
-    // <TableSkeleton rows={5} />
-    <Skeleton.Node
-      active={true}
-      style={{ display: "flex", justifyContent: "center" }}
-    >
-      <TableOutlined style={{ fontSize: 40, color: "#bfbfbf" }} />
-    </Skeleton.Node>
+    <TableSkeleton rows={5} />
   ) : data.length > -1 ? (
     <Table
       columns={columns}

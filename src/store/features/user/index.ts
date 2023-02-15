@@ -18,16 +18,14 @@ const userSlice = createSlice({
         userDetails: action.payload.userDetails,
         token: action.payload.token,
         isLoggedIn: true,
+        isFirstLogin: !!action.payload.isFirstLogin
       };
     },
     logoutUser: (state) => {
       return { ...state, ...INITIAL_USER };
     },
-    getUser(state) {
-      return state;
-    },
   },
 });
 
-export const { loginUser, logoutUser, getUser } = userSlice.actions;
+export const { loginUser, logoutUser } = userSlice.actions;
 export default userSlice.reducer;

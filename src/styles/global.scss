@@ -104,3 +104,22 @@
     padding-bottom: 1em;
     background-color: #FCFDFF;
 }
+
+.ant-table-wrapper .ant-table-thead>tr>th {
+    background-color: #38495C;
+    color: #FCFDFF;
+    font-weight: 500;
+    text-align: center;
+}
+
+.ant-table-wrapper .ant-table-tbody>tr>td {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+}
+
+.ant-table-wrapper .ant-table {
+    border-right: 1px solid $--k-border;
+    border-bottom: 1px solid $--k-border;
+    border-left: 1px solid $--k-border;
+}

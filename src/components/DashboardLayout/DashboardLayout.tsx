@@ -79,7 +79,7 @@ const DashboardLayout: React.FC = () => {
   ];
 
   useEffect(() => {
-    // if (!isLoggedIn) navigate("/signup");
+    if (!isLoggedIn) navigate("/signup");
   }, [isLoggedIn]);
 
   const logout = () => {

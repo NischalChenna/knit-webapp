@@ -8,3 +8,19 @@ export interface CustomFilterOption {
   label: string;
   value: any;
 }
+
+export interface OrgTableDataType {
+  key?: string;
+  name?: string;
+  appId: string;
+  category: string;
+  doneBy: string;
+  createdAt: string;
+  integrationState: string;
+  organization: string;
+  render?: React.ReactNode;
+}
+
+export interface epochMap {
+  [key: string]: { [selectedValue: string]: string; }
+}
