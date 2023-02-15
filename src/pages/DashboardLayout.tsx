@@ -8,7 +8,7 @@ import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import getDashboardRoutes from "../routes/dashboard";
 import { DashboardHome } from ".";
-import DashBreadCrumb from "../components/Breadcrumb";
+import Dashbreadcrumb from "../components/Breadcrumb/BreadCrumb";
 import Organizations from "./Organizations";
 import ScreenTitle from "../components/ScreenTitle";
 import Syncs from "./Syncs";
@@ -119,9 +119,9 @@ function DashboardLayout() {
     //     </Dropdown>
     //   </Header>
     <div className="dashboard-content-wrapper p-5 pt-3 pb-1">
-      <DashBreadCrumb />
-      <Routes>
-        {/* <Route path="/home" element={<DashboardHome />} /> */}
+      <Dashbreadcrumb />
+      {/* <Routes>
+        <Route path="/home" element={<DashboardHome />} />
         <Route path="/issues" element={<div>Issues</div>} />
         <Route
           path="/syncs"
@@ -152,7 +152,7 @@ function DashboardLayout() {
         <Route path="/getting-started" element={<GettingStarted />} />
         <Route path="/organizations" element={<Organizations />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
-      </Routes>
+      </Routes> */}
     </div>
     // </Layout>
     // </Layout>

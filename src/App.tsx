@@ -15,7 +15,7 @@ const DashboardLayout = React.lazy(() => import("./pages/DashboardLayout"));
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {
   return (
-    <ErrorBoundary>
+   <ErrorBoundary>
       <ConfigProvider
         theme={{
           token: {
@@ -70,7 +70,7 @@ function App() {
           </PersistGate>
         </Provider>
       </ConfigProvider>
-    </ErrorBoundary>
+   </ErrorBoundary>
   );
 }
 
