@@ -94,12 +94,12 @@ const Organizations = (): JSX.Element => {
           </div>
         </Row>
         <Row align={"middle"} justify={"center"} className="orgRow">
-          {/* <HalfDonutChart
+          <HalfDonutChart
             series={orgData.seriesValues}
             label={orgData.labelValues}
             legend={legendData}
             dataLoaded={!loading}
-          /> */}
+          />
         </Row>
         {/* <OrgDataTable data={orgData.organizationDetails} loading={loading} /> */}
       </div>
