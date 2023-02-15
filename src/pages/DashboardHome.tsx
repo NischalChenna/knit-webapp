@@ -1,5 +1,37 @@
 import { Col, Row, Skeleton } from "antd";
 import PieChartOutlined from "@ant-design/icons";
+import { DashboardInfoCard, DounutChartCardDashboard } from "../components";
+
+const org = {
+    title: "Organization served",
+    count: 43,
+    route: "/dashboard/home",
+    loading: false
+}
+
+
+const integration = {  
+    title: "Integrations Accounts",
+    count: 64,
+    route: "/dashboard/accounts",
+    loading: true
+}
+
+const issues = {
+    title: "Issues",
+    count: 12,
+    route: "/dashboard/issues",
+    loading: false
+}
+
+const logs = {
+    title: "apiCalls",
+    count: 64,
+    route: "/dashboard/logs",
+    loading: true
+}
+
+
 
 const DashboardHome = () => {
   return (
@@ -11,44 +43,20 @@ const DashboardHome = () => {
           style={{ marginBottom: "3rem" }}
         >
           <Col span={8}>
-            <Skeleton
-              active={true}
-              loading={true}
-              paragraph={{
-                rows: 2,
-                width: [500, 100],
-              }}
-              title={{ width: 200 }}
-            >
-              <div style={{ backgroundColor: "red" }}>Card 1</div>
-            </Skeleton>
+            <DashboardInfoCard info={org} />
           </Col>
+
           <Col span={16}>
-            <Skeleton.Node active={true}>
-              <PieChartOutlined style={{ fontSize: 40, color: "#bfbfbf" }} />
-              {/* <div style={{ backgroundColor: "red"}}>Card 2</div> */}
-            </Skeleton.Node>
+            <DounutChartCardDashboard info={integration}/>
           </Col>
         </Row>
+
         <Row gutter={{ xs: 16, sm: 24, md: 32, lg: 40 }}>
           <Col span={8}>
-            <Skeleton
-              active={true}
-              loading={true}
-              paragraph={{
-                rows: 2,
-                width: [500, 100],
-              }}
-              title={{ width: 200 }}
-            >
-              <div style={{ backgroundColor: "red" }}>Card 1</div>
-            </Skeleton>
+          <DashboardInfoCard info={issues}/>
           </Col>
           <Col span={16}>
-            <Skeleton.Node active={true}>
-              <PieChartOutlined style={{ fontSize: 40, color: "#bfbfbf" }} />
-              {/* <div style={{ backgroundColor: "red"}}>Card 2</div> */}
-            </Skeleton.Node>
+          <DounutChartCardDashboard info={logs} />
           </Col>
         </Row>
       </div>

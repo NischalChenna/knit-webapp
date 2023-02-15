@@ -1,0 +1,40 @@
+.dashboard-donut-chart-card{
+    border-radius: 5px;
+    .ant-card-body{
+        padding: 0;
+        // height: 28vh;
+    }
+    .info-text-box{
+        margin: 2.2rem 0 1rem 2.3rem;
+        display: flex;
+        flex-direction: row;
+    }
+    .info-main-text{
+        margin-bottom: 2rem;
+    }
+    .link-box{
+        margin: 2.2rem 1rem 1rem 2.3rem;
+        text-align: right;
+        color: $--knit-branding;
+    }
+    .link-text{
+        color: $--knit-branding;
+    }
+
+    @media screen and (max-width: 1500px){
+        .ant-card-body{
+            padding: 0;
+            // height: 34vh;
+        }
+    }
+    @media screen and (max-width: 1256px){
+        .ant-card-body{
+            padding: 0;
+            // height: 36vh;
+        }
+       
+    }
+
+   
+}
+

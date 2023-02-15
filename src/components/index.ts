@@ -12,6 +12,11 @@ import Countdown from "./Countdown";
 import SelectableTags from "./SelectableTags";
 import CustomFilters from "./CustomFilters";
 import ScreenTitle from "./ScreenTitle";
+import DashboardInfoCard from "./DashboardInfoCard";
+import DounutChartCardDashboard from "./DonutChartCardDashboard";
+
+
+
 export {
   TestimonialCard,
   SignUpHead,
@@ -27,4 +32,6 @@ export {
   SplineChartFilterCard,
   CustomFilters,
   ScreenTitle,
+  DashboardInfoCard,
+  DounutChartCardDashboard
 };

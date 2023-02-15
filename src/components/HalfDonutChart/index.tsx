@@ -29,6 +29,7 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
       padding: {
         bottom: -80,
       },
+      show: true
     },
     legend: {
       show: props.legend["legendDisplay"],
@@ -44,6 +45,41 @@ const HalfDonutChart = (props: HalfDonutChartProps): JSX.Element => {
         options: {
           chart: {
             width: 200,
+          },
+        },
+      },
+      {
+        breakpoint: 1100,
+        options: {
+          chart: {
+            width: 300,
+          },
+          legend: {
+            position: "bottom",
+          },
+          
+        },
+        
+      },
+      {
+        breakpoint: 1300,
+        options: {
+          chart: {
+            width: 350,
+             height: 150,
+             
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+      {
+        breakpoint: 1400,
+        options: {
+          chart: {
+            width: 400,
+            height: 200
           },
         },
       },
