@@ -1,12 +1,19 @@
 import { defineConfig } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
-import replace from "@rollup/plugin-replace";
+import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [
-    replace({
-      preventAssignment: true,
-      "process.env.NODE_ENV": JSON.stringify("production"),
+    react({
+      babel: {
+        presets: ["@babel/preset-react"],
+        // Your plugins run before any built-in transform (eg: Fast Refresh)
+        plugins: ["@babel/plugin-transform-react-jsx-source"],
+        // Use .babelrc files
+        babelrc: false,
+        // Use babel.config.js files
+        configFile: false,
+      },
     }),
     //reactRefresh(),
     //   vitePluginImp({

@@ -14,6 +14,7 @@
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.2",
     "@rollup/plugin-replace": "^5.0.2",
+    "@vitejs/plugin-react": "^3.1.0",
     "antd": "^5.1.6",
     "apexcharts": "^3.37.0",
     "axios": "^1.2.1",
