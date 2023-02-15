@@ -9,7 +9,7 @@ const Authorize = React.lazy(() => import("./pages/Authorize"));
 const Home = React.lazy(() => import("./pages/Home"));
 const AdminAuth = React.lazy(() => import("./pages/AdminAuth"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
-const ErrorBoundary = import("./pages/Boundary.jsx");
+const ErrorBoundary = import("./pages/Boundary.js");
 const DashboardLayout = React.lazy(() => import("./pages/DashboardLayout"));
 
 const Page404 = React.lazy(() => import("./pages/404"));
