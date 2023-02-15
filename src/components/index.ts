@@ -14,7 +14,7 @@ import CustomFilters from "./CustomFilters";
 import ScreenTitle from "./ScreenTitle";
 import DashboardInfoCard from "./DashboardInfoCard";
 import DounutChartCardDashboard from "./DonutChartCardDashboard";
-
+import Pagination from "./Pagination";
 
 
 export {
@@ -33,5 +33,6 @@ export {
   CustomFilters,
   ScreenTitle,
   DashboardInfoCard,
-  DounutChartCardDashboard
+  DounutChartCardDashboard,
+  Pagination
 };
