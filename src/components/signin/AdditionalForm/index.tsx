@@ -10,6 +10,7 @@ import { loginUser } from "../../../store/features/user";
 interface OrgFormProps {
   userEmail: string | null;
   newUser: Boolean;
+  orgId: string | null;
 }
 
 function AdditionalForm(props: OrgFormProps) {
@@ -53,10 +54,12 @@ function AdditionalForm(props: OrgFormProps) {
   };
 
   const onFinish = (values: any) => {
+    console.log("props ", values);
     const newMap = {
       ...values,
       userEmail: props.userEmail,
       newUser: props.newUser,
+      orgId: props.orgId,
       categories: values.categories.map((val: TagOption) =>
         val?.value ? val.value : val.label
       ),
@@ -77,6 +80,7 @@ function AdditionalForm(props: OrgFormProps) {
         layout="vertical"
         onFinish={onFinish}
         validateMessages={validateMessages}
+        initialValues={{ orgSize: orgSize[0] }}
       >
         <Form.Item name={["username"]} label="What should we call you?">
           <Input placeholder="Enter username" />
@@ -91,9 +95,7 @@ function AdditionalForm(props: OrgFormProps) {
         <Form.Item name={["orgSize"]} label="Organisation Size">
           <Select
             placeholder="Select your organisation size"
-            allowClear
             options={orgSize.map((val) => ({ label: val, value: val }))}
-            defaultValue={orgSize[0]}
           ></Select>
         </Form.Item>
         <Form.Item

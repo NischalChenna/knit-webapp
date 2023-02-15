@@ -7,7 +7,7 @@ import "./../OtpForm/EnterOtpForm.scss";
 import Countdown from "../../Countdown";
 import { subscribe, unsubscribe } from "../../../utils/events";
 import { useAppDispatch } from "../../../store/hooks";
-import {  loginUser } from "../../../store/features/user";
+import { loginUser } from "../../../store/features/user";
 import { useNavigate } from "react-router-dom";
 
 interface optFormProps {
@@ -48,8 +48,6 @@ const OtpInfoForm = (props: optFormProps) => {
     };
   }, []);
 
-
-
   const submitOtp = (e: any): void => {
     e?.preventDefault();
     setLoading(true);
@@ -63,7 +61,7 @@ const OtpInfoForm = (props: optFormProps) => {
         if (res.data.success) {
           if (!props.newUser) {
             dispatch(loginUser(res.data.msg));
-          } else props.nextStep();
+          } else props.nextStep(res.data.msg.userDetails.orgId);
         }
       })
       .catch((err) => {

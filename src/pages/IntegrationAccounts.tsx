@@ -1,27 +1,21 @@
 import { notification, Row } from "antd";
 import React from "react";
 import { useState } from "react";
-import { CustomFilters, HalfDonutChart } from "../../components";
-import OrgDataTable from "../../components/OrgDataTable";
-import ScreenTitle from "../../components/ScreenTitle";
-import { OrgData, OrgTableDataType } from "../../interfaces";
-import getAxiosInstance from "../../services/Api";
-import { covertTimeperiodToEpoch } from "../../utils/filters";
-import "../Organizations/Organizations.scss";
+import { ScreenTitle, CustomFilters, HalfDonutChart } from "../components";
+import OrgDataTable from "../components/OrgDataTable";
+import { IntegrationData } from "../interfaces";
+import getAxiosInstance from "../services/Api";
+import { covertTimeperiodToEpoch } from "../utils/filters";
 
-const Organizations = (): JSX.Element => {
+const IntegrationAccounts = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [orgData, setOrgData] = useState<OrgData>({
+  const [integrationData, setIntegrationData] = useState<IntegrationData>({
     categoryDetails: {},
-    orgCount: 0,
+    integrationCount: 0,
     organizationDetails: [],
     seriesValues: [],
     labelValues: [],
   });
-
-  // useEffect(() => {
-  //   getOrganizations(filters);
-  // }, []);
 
   const legendData: { [key: string]: any } = {
     legendDisplay: true,
@@ -29,14 +23,14 @@ const Organizations = (): JSX.Element => {
     formatLegend: function (seriesName: string, otps: any) {
       return [
         seriesName,
-        "  " + otps.w.config.series[otps.seriesIndex] + "   Organizations",
+        "  " + otps.w.config.series[otps.seriesIndex] + "   Count of accounts",
       ];
     },
   };
-  function getOrganizations(filterValues: any) {
+  function getIntegrationAccounts(filterValues: any) {
     setLoading(true);
     getAxiosInstance()
-      .get("/app.getOrganizations", {
+      .get("/app.getIntegrationAccounts", {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX3pFMkFNUWVCZjlxckZnOWkxSjgwVkgiLCJleHBpcmVzQXQiOjE2NzcxNDU3MTl9.wzgaiK9dvIntyKA4kFx1iRf_suKhAYo-GX_AViJ4CwE",
@@ -47,11 +41,11 @@ const Organizations = (): JSX.Element => {
       })
       .then((res) => {
         if (res.data.success) {
-          const { orgCount, organizationDetails, categoryDetails } =
+          const { integrationCount, organizationDetails, categoryDetails } =
             res.data.msg;
-          setOrgData({
+          setIntegrationData({
             categoryDetails: categoryDetails,
-            orgCount: orgCount,
+            integrationCount: integrationCount,
             organizationDetails: organizationDetails,
             seriesValues: Object.values(categoryDetails),
             labelValues: Object.keys(categoryDetails),
@@ -74,7 +68,7 @@ const Organizations = (): JSX.Element => {
     filter["TIME_PERIOD"] = covertTimeperiodToEpoch(
       filter["TIME_PERIOD"]
     ).toString();
-    getOrganizations(JSON.stringify(filter));
+    getIntegrationAccounts(JSON.stringify(filter));
   };
 
   return (
@@ -84,27 +78,37 @@ const Organizations = (): JSX.Element => {
         <Row align={"middle"} className="orgHeadRow">
           <div>
             <div className="orgText">Total Organizations Being Served</div>
-            <div className="numOrg pt-2 pb-3">{orgData.orgCount}</div>
+            <div className="numOrg pt-2 pb-3">
+              {integrationData.integrationCount}
+            </div>
           </div>
           <div className="filters">
             <CustomFilters
-              filterKeys={["TIME_PERIOD", "CATEGORY"]}
+              filterKeys={[
+                "TIME_PERIOD",
+                "STATUS",
+                "INTEGRATIONS",
+                "ORGANIZATIONS",
+              ]}
               onFiltersChange={onFiltersChange}
             />
           </div>
         </Row>
         <Row align={"middle"} justify={"center"} className="orgRow">
           <HalfDonutChart
-            series={orgData.seriesValues}
-            label={orgData.labelValues}
+            series={integrationData.seriesValues}
+            label={integrationData.labelValues}
             legend={legendData}
             dataLoaded={!loading}
           />
         </Row>
-        <OrgDataTable data={orgData.organizationDetails} loading={loading} />
+        <OrgDataTable
+          data={integrationData.organizationDetails}
+          loading={loading}
+        />
       </div>
     </React.Fragment>
   );
 };
 
-export default Organizations;
+export default IntegrationAccounts;

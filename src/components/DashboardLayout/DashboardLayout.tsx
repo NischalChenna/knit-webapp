@@ -20,6 +20,7 @@ import { useAppSelector } from "../../store/hooks";
 import { mdiLogout } from "@mdi/js";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/features/user";
+import IntegrationAccounts from "../../pages/IntegrationAccounts";
 type MenuItem = Required<MenuProps>["items"][number];
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -187,7 +188,7 @@ const DashboardLayout: React.FC = () => {
               }
             />
             <Route path="/logs" element={<div>Logs</div>} />
-            <Route path="/accounts" element={<div>Accounts</div>} />
+            <Route path="/accounts" element={<IntegrationAccounts />} />
             <Route path="/getting-started" element={<GettingStarted />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="*" element={<Navigate to="/404" replace />} />

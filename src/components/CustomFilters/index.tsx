@@ -15,6 +15,7 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    console.log("print", filterDataLoaded);
     setFilterDataLoaded(true);
   }, [filtersObj]);
 
@@ -42,7 +43,9 @@ const CustomFilters = (props: CustomFilterProps): JSX.Element => {
         .get("app.filtersMetadata", {
           params: { filters: JSON.stringify([...dynamicFilters]) },
           headers: {
-            Authorization: `Bearer ` + localStorage.getItem("knit_jwt"),
+            Authorization:
+              `Bearer ` +
+              "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJuaXNjaGFsQGdldGtuaXQuZGV2IiwidXNlcklkIjoidV95NjdySmdQbWxKY05idE4wR2ZiNlc4Iiwib3JnSWQiOiJvX3pFMkFNUWVCZjlxckZnOWkxSjgwVkgiLCJleHBpcmVzQXQiOjE2NzcxNDU3MTl9.wzgaiK9dvIntyKA4kFx1iRf_suKhAYo-GX_AViJ4CwE",
           },
         })
         .then((res) => {

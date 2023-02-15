@@ -9,7 +9,7 @@ const dashboardRoutes = [
   {
     key: "/dashboard/accounts",
     path: "/dashboard/accounts",
-    label: "Integration Acoounts",
+    label: "Integration Accounts",
     icon: mdiMapOutline,
     sidebar: true,
   },

@@ -16,13 +16,17 @@ const SignUp: React.FC = () => {
   const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const [userEmail, setEmail] = useState<string | null>(null);
+  const [orgId, setOrgId] = useState<string | null>(null);
   const [step, setStep] = useState<number>(0);
   const [newUser, setNewUser] = useState(false);
   const updateEmail: Function = (str: string | null): void => {
     setEmail(str);
   };
 
-  const nextStep: Function = (): void => {
+  const nextStep: Function = (orgId: string): void => {
+    console.log("orgId", orgId);
+    setOrgId(orgId);
+    console.log("orgId 1", orgId);
     switch (step) {
       case 0:
         setStep(step + 1);
@@ -69,7 +73,13 @@ const SignUp: React.FC = () => {
                 />
               </React.Fragment>
             ),
-            2: <AdditionalForm userEmail={userEmail} newUser={newUser} />,
+            2: (
+              <AdditionalForm
+                userEmail={userEmail}
+                newUser={newUser}
+                orgId={orgId}
+              />
+            ),
           }[step]
         }
         <SignUpFooter newUser={newUser} toggleNewUser={toggleNewUser} />

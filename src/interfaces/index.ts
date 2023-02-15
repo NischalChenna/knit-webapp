@@ -21,6 +21,32 @@ export interface OrgTableDataType {
   render?: React.ReactNode;
 }
 
+export interface OrgData {
+  categoryDetails: any;
+  orgCount: number;
+  organizationDetails: OrganizationDetails[];
+  seriesValues: number[];
+  labelValues: string[];
+}
+
+export interface IntegrationData {
+  categoryDetails: any;
+  integrationCount: number;
+  organizationDetails: OrganizationDetails[];
+  seriesValues: number[];
+  labelValues: string[];
+}
+
+interface OrganizationDetails {
+  appId: string;
+  category: string;
+  createdAt: string;
+  doneBy: string;
+  emailSent: string;
+  integrationState: string;
+  organization: string;
+}
+
 export interface epochMap {
-  [key: string]: { [selectedValue: string]: string; }
+  [key: string]: { [selectedValue: string]: string };
 }
