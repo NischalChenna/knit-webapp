@@ -79,10 +79,9 @@ const onlyLoginRoutes = [
   },
 ];
 
-const getDashboardRoutes = (isFirstLogin: boolean = false) => {
+export const getDashboardRoutes = (isFirstLogin: boolean = false) => {
   return [...dashboardRoutes].concat(
     isFirstLogin ? onlyFirstTimeRoutes : onlyLoginRoutes
   );
 };
 
-export default getDashboardRoutes;

@@ -2,7 +2,7 @@ import { Breadcrumb } from "antd";
 import { useLocation, Link, matchRoutes } from "react-router-dom";
 import { mdiHomeOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import getDashboardRoutes from "../../routes/dashboard";
+import { getDashboardRoutes } from "../../routes/dashboard";
 import { useAppSelector } from "../../store/hooks";
 const DashBreadCrumb = () => {
   const { isFirstLogin } = useAppSelector((state) => state.user);
@@ -10,10 +10,7 @@ const DashBreadCrumb = () => {
   console.log("locatuionObj", location);
   const pathSnippets = location.pathname.split("/").filter((i) => i);
   return (
-    <Breadcrumb
-      style={{ fontWeight: "bold" }}
-      separator={'>'}
-    >
+    <Breadcrumb style={{ fontWeight: "bold" }} separator={">"}>
       <Breadcrumb.Item key="home" className="py-2">
         <Link className="text-decoration-none" to="/dashboard/home">
           <Icon path={mdiHomeOutline} size={1} />

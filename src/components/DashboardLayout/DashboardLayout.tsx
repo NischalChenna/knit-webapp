@@ -10,8 +10,8 @@ import {
   EllipsisOutlined,
 } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
-import getDashboardRoutes from "../../routes/dashboard";
-import  DashboardHome  from "../../pages/DashboardHome";
+import { getDashboardRoutes } from "../../routes/dashboard";
+import DashboardHome from "../../pages/DashboardHome";
 import DashBreadCrumb from "../Breadcrumb";
 import Organizations from "../../pages/Organizations";
 import ScreenTitle from "../ScreenTitle";
