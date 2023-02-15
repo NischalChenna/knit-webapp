@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Space, Menu, Row, Col, Avatar, Dropdown } from "antd";
+import React, { useEffect } from "react";
+import { Layout, Menu, Avatar, Dropdown } from "antd";
 import Icon from "@mdi/react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import GettingStarted from "../../pages/GettingStarted";
 import type { MenuProps } from "antd";
-import {
-  UserOutlined,
-  FundProjectionScreenOutlined,
-  EllipsisOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import getDashboardRoutes from "../../routes/dashboard";
 import { DashboardHome } from "../../pages";
@@ -21,9 +17,8 @@ import { mdiLogout } from "@mdi/js";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/features/user";
 import IntegrationAccounts from "../../pages/IntegrationAccounts";
-type MenuItem = Required<MenuProps>["items"][number];
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider } = Layout;
 
 // const headerStyle: React.CSSProperties = {
 //   textAlign: "center",
@@ -64,7 +59,7 @@ const DashboardLayout: React.FC = () => {
     {
       label: (
         <div className="d-flex">
-          <Icon path={mdiLogout} size={1} />{" "}
+          <Icon path={mdiLogout} size={1} />
           <span className="ms-2">Logout</span>
         </div>
       ),
@@ -89,7 +84,6 @@ const DashboardLayout: React.FC = () => {
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider style={{ background: "white" }}>
-        {" "}
         <Menu
           selectedKeys={[location.pathname]}
           overflowedIndicator={<EllipsisOutlined />}
@@ -98,26 +92,25 @@ const DashboardLayout: React.FC = () => {
             .filter((rt) => rt.sidebar)
             .map((route: any) => {
               return (
-                <Menu.Item key={route.key} className="px-1">
-                  <Link to={route.path} className="text-decoration-none">
-                    <Row>
-                      <Col span={4} className="me-1">
-                        <Icon
-                          className="align-middle"
-                          size={"18px"}
-                          path={route.icon}
-                        />
-                      </Col>
-                      <Col
-                        data-testid={
-                          route.label.toLowerCase().split(" ").join("-") +
-                          "-nav"
-                        }
-                      >
-                        {route.label}
-                      </Col>
-                    </Row>
-                  </Link>
+                <Menu.Item
+                  key={route.key}
+                  title={route.label}
+                  icon={
+                    <span
+                      role="img"
+                      aria-label="pic-right"
+                      className="anticon anticon-pic-right ant-menu-item-icon"
+                    >
+                      <Icon
+                        className="align-middle"
+                        size={"18px"}
+                        path={route.icon}
+                      />
+                    </span>
+                  }
+                >
+                  {route.label}
+                  <Link to={route.path}></Link>
                 </Menu.Item>
               );
             })}

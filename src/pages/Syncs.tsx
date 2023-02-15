@@ -58,7 +58,7 @@ const Syncs = () => {
             <h5 className="pt-2">
               {dataLoaded ? syncsData.totalSyncs : <Skeleton.Button active />}
             </h5>
-          </div>{" "}
+          </div>
           <CustomFilters
             filterKeys={["ORGANIZATIONS", "INTEGRATIONS"]}
             onFiltersChange={filtersChange}

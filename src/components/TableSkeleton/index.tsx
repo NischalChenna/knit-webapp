@@ -8,27 +8,20 @@ interface Skeleton {
 const TableSkeleton = ({ rows = 5 }: Skeleton): JSX.Element => {
   return (
     <React.Fragment>
-      {" "}
       {[...Array(rows).keys()].map((r, i) => (
         <Row key={i} className="table-skeleton">
           <Col sm={6} md={6} className="px-1">
-            <Skeleton.Button active={i % 2 ==0} size="large" />
-          </Col>{" "}
+            <Skeleton.Button active={i % 2 == 0} size="large" />
+          </Col>
           <Col sm={6} md={6} className="px-1">
-            <Skeleton.Button active={i % 2 ==0} size="large" />
-          </Col>{" "}
+            <Skeleton.Button active={i % 2 == 0} size="large" />
+          </Col>
           <Col sm={6} md={6} className="px-1">
-            <Skeleton.Button active={i % 2 ==0} size="large" />
-          </Col>{" "}
+            <Skeleton.Button active={i % 2 == 0} size="large" />
+          </Col>
           <Col sm={6} md={6} className="px-1">
-            <Skeleton.Button active={i % 2 ==0} size="large" />
-          </Col>{" "}
-          {/* <Col sm={4} md={4} className="px-1">
-            <Skeleton.Button active size="large" />
-          </Col>{" "}
-          <Col sm={4} md={4} className="px-1">
-            <Skeleton.Button active size="large" />
-          </Col>{" "} */}
+            <Skeleton.Button active={i % 2 == 0} size="large" />
+          </Col>
         </Row>
       ))}
     </React.Fragment>

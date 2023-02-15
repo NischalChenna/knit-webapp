@@ -13,7 +13,6 @@ function SignUpHead(props: SignupHeaderProps) {
       </h2>
       {props.newUser ? (
         <React.Fragment>
-          {" "}
           <h4 className="signup-section-title">
             {props.step == 1 ? `1.Sign-Up` : `2. Additional Details`}
           </h4>

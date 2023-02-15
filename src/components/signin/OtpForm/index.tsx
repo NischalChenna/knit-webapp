@@ -88,15 +88,15 @@ const OtpInfoForm = (props: optFormProps) => {
         The OTP has been sent to <b>{props.userEmail}</b>
       </p>
       <p>
-        Entered wrong email ?{" "}
+        Entered wrong email ?
         <Button
           type="text"
           className="font-bold"
           style={{ paddingInline: 0 }}
           onClick={onReenter}
         >
-          Re-enter{" "}
-        </Button>{" "}
+          Re-enter
+        </Button>
         the correct one
       </p>
       <OtpInput
@@ -110,7 +110,7 @@ const OtpInfoForm = (props: optFormProps) => {
       />
       <p className="otp-text">Didn’t receive the OTP ?</p>
       <p className="resend-text">
-        Click on{" "}
+        Click on
         <Button
           type="text"
           disabled={resendDisabled}
@@ -131,8 +131,8 @@ const OtpInfoForm = (props: optFormProps) => {
               });
           }}
         >
-          Resend OTP{" "}
-        </Button>{" "}
+          Resend OTP
+        </Button>
         in <Countdown countMax={OTP_TIMER} timertoggler={resendDisabled} />s
       </p>
       <Button

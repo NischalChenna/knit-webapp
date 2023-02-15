@@ -62,8 +62,7 @@ const SelectableTags = ({
             }
             key={optionItem?.id || optionItem?.label || optionItem?.value}
           >
-            {" "}
-            {optionItem?.label || optionItem?.value}{" "}
+            {optionItem?.label || optionItem?.value}
             {isTagSelected(optionItem) && <CloseOutlined />}
           </CheckableTag>
         );
