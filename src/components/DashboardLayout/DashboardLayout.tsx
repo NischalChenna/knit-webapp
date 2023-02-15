@@ -58,7 +58,6 @@ const footerStyle: React.CSSProperties = {
 const DashboardLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState<boolean>(false);
   const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
   const items: MenuProps["items"] = [
