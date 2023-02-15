@@ -53,8 +53,8 @@ const footerStyle: React.CSSProperties = {
 const DashboardLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
-  const dispatch = useDispatch();
+  // const { isLoggedIn, isFirstLogin } = useAppSelector((state) => state.user);
+  // const dispatch = useDispatch();
   const items: MenuProps["items"] = [
     {
       label: (
@@ -66,20 +66,20 @@ const DashboardLayout = () => {
       key: "1",
       onClick: (e: any) => {
         e?.preventDefault;
-        logout();
+        // logout();
       },
 
       // icon: <UserOutlined />,
     },
   ];
 
-  useEffect(() => {
-    if (!isLoggedIn) navigate("/signup");
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) navigate("/signup");
+  // }, [isLoggedIn]);
 
-  const logout = () => {
-    dispatch(logoutUser());
-  };
+  // const logout = () => {
+  //   dispatch(logoutUser());
+  // };
 
   return (
     <Layout style={{ height: "100vh" }}>
@@ -88,7 +88,7 @@ const DashboardLayout = () => {
           selectedKeys={[location.pathname]}
           overflowedIndicator={<EllipsisOutlined />}
         >
-          {getDashboardRoutes(isFirstLogin)
+          {getDashboardRoutes(true)
             .filter((rt) => rt.sidebar)
             .map((route: any) => {
               return (
