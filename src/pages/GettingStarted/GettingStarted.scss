@@ -1,0 +1,25 @@
+.gettingStarted {
+    .desc {
+        font-size: 14px;
+        color: #202020;
+        font-weight: 500;
+    }
+    .descLink {
+        font-size: 14px;
+        color: #202020;
+        font-weight: 500;
+        align-items: center;
+        .docDesc {
+            margin-right: 1ex;
+        }
+        .link {
+            color: $--k-primary
+        }
+    }
+}
+.ant-row {
+    margin-bottom: 1ex;
+}
+.tableColumn {
+    background-color: aqua;
+}

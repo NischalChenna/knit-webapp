@@ -1,0 +1,54 @@
+.testimonial-card {
+  margin: 2.5rem 0 2.5rem 2.506rem;
+  border: 1px solid gray;
+//   max-width: 39.25rem;
+//   max-height: 51.25rem;
+
+  .ant-card-body{
+    padding: 0;
+  }
+
+  .logo-section {
+    margin-left: 1.699rem;
+    margin-top: 1.768rem;
+    display: flex;
+  }
+
+  .header-text {
+    font-weight: 600;
+    font-size: 29.51px;
+    line-height: 35.41px;
+    text-align: center;
+    margin: 3.24rem 0 5.3rem 0;
+  }
+
+  .paragraph-text {
+    margin: 0 3.08rem 6.7rem 3.02rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 19.67px;
+    line-height: 32.78px;
+  }
+  .avatar-container {
+    text-align: center;
+    margin: 0rem 0 1rem 0;
+  }
+  .name-container {
+    text-align: center;
+  }
+
+  .name-text {
+    margin-bottom: 6px;
+  }
+
+  .title-text {
+    margin-top: 0;
+  }
+  .avatar-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.65rem 4.21rem;
+  }
+}
+
+//margin-left: 2nd column 5.996rem

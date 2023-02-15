@@ -1,0 +1,14 @@
+.table-skeleton {
+    width: 100%;
+
+    .ant-skeleton {
+        display: block !important;
+        width: 100% !important;
+
+        span {
+            width: calc(95% ) !important;
+        }
+    }
+
+
+}

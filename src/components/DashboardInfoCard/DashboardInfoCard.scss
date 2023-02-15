@@ -1,0 +1,20 @@
+.dashboard-info-card{
+    border-radius: 5px;
+    .ant-card-body{
+        padding: 0;
+    }
+    .info-text-box{
+        margin: 2.2rem 0 1rem 2.3rem;
+    }
+    .info-main-text{
+        margin-bottom: 2rem;
+    }
+    .link-box{
+        margin: 2.2rem 1rem 1rem 2.3rem;
+        text-align: right;
+        color: $--knit-branding;
+    }
+    .link-text{
+        color: $--knit-branding;
+    }
+}

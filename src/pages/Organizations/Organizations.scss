@@ -1,0 +1,44 @@
+.organizations {
+    .orgHeadRow{
+        border-bottom: 1px solid;
+        border-bottom-color: $--k-border;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 2em;
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            .timeperiod {
+                margin-right: 2em;
+            }
+        }
+    }
+    .orgRow {
+        border-bottom: 1px solid;
+        border-bottom-color: $--k-border;
+    }
+    .orgText{
+        font-weight: 500;
+        color: $--k-secondary;
+    }
+    .numOrg {
+        font-weight: 700;
+        font-size: 20px;
+    }
+}
+.deleteColumn{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: $--k-error;
+    .deleteIcon {
+        margin-right: 1ex;
+    }
+}
+.legend {
+    background-color: black;
+}
+.deleteBtn {
+    color: $--k-warning;
+    margin-right: 5px;
+}
