@@ -101,7 +101,7 @@ const Organizations = (): JSX.Element => {
             dataLoaded={!loading}
           /> */}
         </Row>
-        <OrgDataTable data={orgData.organizationDetails} loading={loading} />
+        {/* <OrgDataTable data={orgData.organizationDetails} loading={loading} /> */}
       </div>
     </React.Fragment>
   );
