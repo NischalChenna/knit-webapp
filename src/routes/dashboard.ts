@@ -7,19 +7,26 @@ import {
 
 const dashboardRoutes = [
   {
-    key: "/dashboard/accounts",
-    path: "/dashboard/accounts",
-    label: "Integration Accounts",
-    icon: mdiMapOutline,
+    key: "/dashboard/home",
+    path: "/dashboard/home",
+    label: "Dashboard",
+    icon: mdiViewGridOutline,
     sidebar: true,
   },
   {
-    key: "/dashboard/logs",
-    path: "/dashboard/logs",
-    label: "Logs",
+    key: "/dashboard/accounts",
+    path: "/dashboard/accounts",
+    label: "Integration Acoounts",
     icon: mdiMapOutline,
     sidebar: true,
   },
+  // {
+  //   key: "/dashboard/logs",
+  //   path: "/dashboard/logs",
+  //   label: "Logs",
+  //   icon: mdiMapOutline,
+  //   sidebar: true,
+  // },
   {
     key: "/dashboard/syncs",
     path: "/dashboard/syncs",
@@ -43,13 +50,7 @@ const dashboardRoutes = [
     icon: mdiSync,
     sidebar: false,
   },
-  {
-    key: "/dashboard/home",
-    path: "/dashboard/home",
-    label: "Dashboard",
-    icon: mdiViewGridOutline,
-    sidebar: true,
-  },
+
   {
     key: "/dashboard/organizations",
     path: "/dashboard/organizations",

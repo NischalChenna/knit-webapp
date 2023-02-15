@@ -1,7 +1,9 @@
 import { notification, Row } from "antd";
 import React from "react";
 import { useState } from "react";
-import { CustomFilters, HalfDonutChart } from "../../components";
+import CustomFilters from "../../components/CustomFilters";
+import HalfDonutChart from "../../components/HalfDonutChart";
+
 import OrgDataTable from "../../components/OrgDataTable";
 import ScreenTitle from "../../components/ScreenTitle";
 import { OrgData, OrgTableDataType } from "../../interfaces";
@@ -101,7 +103,7 @@ const Organizations = (): JSX.Element => {
             dataLoaded={!loading}
           />
         </Row>
-        {/* <OrgDataTable data={orgData.organizationDetails} loading={loading} /> */}
+        <OrgDataTable data={orgData.organizationDetails} loading={loading} />
       </div>
     </React.Fragment>
   );

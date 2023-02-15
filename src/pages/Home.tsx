@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination } from "../components";
+import  Pagination  from "../components/Pagination";
 
 function Home() {
   return (

@@ -123,3 +123,8 @@
     border-bottom: 1px solid $--k-border;
     border-left: 1px solid $--k-border;
 }
+
+.ant-layout-sider-trigger {
+    background: $--k-primary !important;
+    opacity: 0.7;
+}

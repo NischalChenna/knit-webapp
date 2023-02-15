@@ -2,7 +2,7 @@ import { Row, Skeleton } from "antd";
 import { ColumnsType } from "antd/es/table";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CustomFilters } from "../components";
+import CustomFilters from "../components/CustomFilters";
 import ScreenTitle from "../components/ScreenTitle";
 import { CustomFilterObject } from "../interfaces";
 import moment from "moment";
@@ -58,7 +58,7 @@ const Syncs = () => {
             <h5 className="pt-2">
               {dataLoaded ? syncsData.totalSyncs : <Skeleton.Button active />}
             </h5>
-          </div>
+          </div>{" "}
           <CustomFilters
             filterKeys={["ORGANIZATIONS", "INTEGRATIONS"]}
             onFiltersChange={filtersChange}

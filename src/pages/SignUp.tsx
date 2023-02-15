@@ -2,14 +2,11 @@ import { Row, Col, Button } from "antd";
 import React, { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  AdditionalForm,
-  OtpInfoForm,
-  SignUpForm,
-  SignUpHead,
-  TestimonialCard,
-  SignUpFooter,
-} from "../components";
+import SignUpHead from "../components/signin/SignUpHeader";
+import AdditionalForm from "../components/signin/AdditionalForm";
+import OtpInfoForm from "../components/signin/OtpForm";
+import SignUpForm from "../components/signin/SignUpForm";
+import SignUpFooter from "../components/signin/SignUpFooter";
 import { useAppSelector } from "../store/hooks";
 
 const SignUp: React.FC = () => {

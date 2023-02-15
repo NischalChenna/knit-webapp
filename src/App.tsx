@@ -5,37 +5,40 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 import { Spin, ConfigProvider } from "antd";
+import ErrorBoundary from "./Boundary";
 const Authorize = React.lazy(() => import("./pages/Authorize"));
 const Home = React.lazy(() => import("./pages/Home"));
 const AdminAuth = React.lazy(() => import("./pages/AdminAuth"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
-const ErrorBoundary = import("./pages/Boundary.js");
-const DashboardLayout = React.lazy(() => import("./pages/DashboardLayout"));
+
+const DashboardLayout = React.lazy(
+  () => import("./components/DashboardLayout/DashboardLayout")
+);
 
 const Page404 = React.lazy(() => import("./pages/404"));
 function App() {
   return (
-   <ErrorBoundary>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#ff6c37",
-            colorSuccess: "#059e05",
-            colorPrimaryBg: "rgba(255, 213, 164, 0.15)",
-            colorSuccessBg: "rgba(203, 222, 200, 0.3)",
-            colorError: "#ff0000",
-            colorErrorBg: "rgba(255, 234, 230, 0.4)",
-            colorInfo: "#486aff",
-            colorTextBase: "#202020",
-            colorBgBase: "#ffffff",
-            colorText: "rgba(32, 32, 32,1)",
-            colorTextSecondary: "rgba(32, 32, 32, 0.7)",
-            colorTextTertiary: "rgba(32, 32, 32, 0.5)",
-            colorBorder: "#d9d9d9",
-            colorBgContainer: "#FCFDFF",
-          },
-        }}
-      >
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#ff6c37",
+          colorSuccess: "#059e05",
+          colorPrimaryBg: "rgba(255, 213, 164, 0.15)",
+          colorSuccessBg: "rgba(203, 222, 200, 0.3)",
+          colorError: "#ff0000",
+          colorErrorBg: "rgba(255, 234, 230, 0.4)",
+          colorInfo: "#486aff",
+          colorTextBase: "#202020",
+          colorBgBase: "#ffffff",
+          colorText: "rgba(32, 32, 32,1)",
+          colorTextSecondary: "rgba(32, 32, 32, 0.7)",
+          colorTextTertiary: "rgba(32, 32, 32, 0.5)",
+          colorBorder: "#d9d9d9",
+          colorBgContainer: "#FCFDFF",
+        },
+      }}
+    >
+      <ErrorBoundary>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <React.Suspense
@@ -69,8 +72,8 @@ function App() {
             </React.Suspense>
           </PersistGate>
         </Provider>
-      </ConfigProvider>
-   </ErrorBoundary>
+      </ErrorBoundary>
+    </ConfigProvider>
   );
 }
 

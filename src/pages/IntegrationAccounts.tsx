@@ -1,7 +1,9 @@
 import { notification, Row } from "antd";
 import React from "react";
 import { useState } from "react";
-import { ScreenTitle, CustomFilters, HalfDonutChart } from "../components";
+import ScreenTitle from "../components/ScreenTitle";
+import HalfDonutChart from "../components/HalfDonutChart";
+import CustomFilters from "../components/CustomFilters";
 import OrgDataTable from "../components/OrgDataTable";
 import { IntegrationData } from "../interfaces";
 import getAxiosInstance from "../services/Api";
